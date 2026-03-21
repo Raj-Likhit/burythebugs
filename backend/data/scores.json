@@ -1,0 +1,35 @@
+[
+  {
+    "id": "d321a700-f16d-43e8-81c7-16f358ba16bc",
+    "name": "TestPlayer",
+    "language": "python",
+    "bugId": 11,
+    "score": 0,
+    "timeRemaining": 214,
+    "difficulty": "hard",
+    "passed": false,
+    "timestamp": "2026-03-20T19:24:13.025Z"
+  },
+  {
+    "id": "f8c26b6f-c864-4b63-aa57-be7c3ca77b82",
+    "name": "TestPlayer",
+    "language": "python",
+    "bugId": 1,
+    "score": 0,
+    "timeRemaining": 295,
+    "difficulty": "easy",
+    "passed": false,
+    "timestamp": "2026-03-20T19:26:51.576Z"
+  },
+  {
+    "id": "24562031-7479-478d-aa95-c465038501c8",
+    "name": "TestRunner",
+    "language": "python",
+    "bugId": 7,
+    "score": 0,
+    "timeRemaining": 283,
+    "difficulty": "medium",
+    "passed": false,
+    "timestamp": "2026-03-21T11:12:25.161Z"
+  }
+]
