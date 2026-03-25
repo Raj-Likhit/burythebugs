@@ -2,8 +2,7 @@ const PISTON = 'http://localhost:2000/api/v2';
 
 const runtimes = [
   { language: 'python', version: '3.10.0' },
-  { language: 'c', version: '10.2.0' },
-  { language: 'c++', version: '10.2.0' },
+  { language: 'gcc', version: '10.2.0' },
   { language: 'java', version: '15.0.2' },
 ];
 

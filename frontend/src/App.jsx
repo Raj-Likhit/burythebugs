@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 import Home from './pages/Home'
 import LanguageSelect from './pages/LanguageSelect'
 import Game from './pages/Game'
@@ -9,7 +10,6 @@ const SCREENS = { HOME: 'home', LANG: 'lang', GAME: 'game', RESULT: 'result', LE
 
 function App() {
   const [screen, setScreen] = useState(SCREENS.HOME)
-  const [pageClass, setPageClass] = useState('page-enter')
   const [playerName, setPlayerName] = useState('')
   const [chosenLanguage, setChosenLanguage] = useState('')
   const [currentBug, setCurrentBug] = useState(null)
@@ -21,15 +21,6 @@ function App() {
     localStorage.removeItem('btb_session')
     setPlayedBugIds([])
   }, [])
-
-  // Animate page transitions
-  useEffect(() => {
-    setPageClass('page-enter')
-    const t = requestAnimationFrame(() => {
-      requestAnimationFrame(() => setPageClass('page-active'))
-    })
-    return () => cancelAnimationFrame(t)
-  }, [screen])
 
   const navigate = (newScreen) => setScreen(newScreen)
 
@@ -74,35 +65,56 @@ function App() {
     navigate(SCREENS.HOME)
   }
 
+  const pageVariants = {
+    initial: { opacity: 0, x: 20 },
+    enter: { opacity: 1, x: 0 },
+    exit: { opacity: 0, x: -20 }
+  }
+
   return (
-    <div className={`min-h-screen ${pageClass}`}>
-      {screen === SCREENS.HOME && (
-        <Home onDeploy={handleDeploy} />
-      )}
-      {screen === SCREENS.LANG && (
-        <LanguageSelect onLock={handleLanguageLock} onBack={() => navigate(SCREENS.HOME)} />
-      )}
-      {screen === SCREENS.GAME && (
-        <Game
-          playerName={playerName}
-          language={chosenLanguage}
-          playedBugIds={playedBugIds}
-          onBugLoaded={handleBugLoaded}
-          onSubmitResult={handleSubmitResult}
-          onExhausted={handleChangeLang}
-        />
-      )}
-      {screen === SCREENS.RESULT && (
-        <Result
-          result={result}
-          bug={currentBug}
-          onPlayAgain={handlePlayAgain}
-          onLeaderboard={() => navigate(SCREENS.LEADERBOARD)}
-        />
-      )}
-      {screen === SCREENS.LEADERBOARD && (
-        <Leaderboard onBack={handleBackHome} />
-      )}
+    <div className="min-h-screen bg-[#080B0F] text-[#E6EDF3] overflow-hidden relative">
+      {/* Scanline Overlay */}
+      <div className="scanlines"></div>
+ 
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={screen}
+          initial="initial"
+          animate="enter"
+          exit="exit"
+          variants={pageVariants}
+          transition={{ duration: 0.3, ease: "easeOut" }}
+          className="min-h-screen w-full relative z-10"
+        >
+          {screen === SCREENS.HOME && (
+            <Home onDeploy={handleDeploy} onViewLeaderboard={() => navigate(SCREENS.LEADERBOARD)} />
+          )}
+          {screen === SCREENS.LANG && (
+            <LanguageSelect onLock={handleLanguageLock} onBack={() => navigate(SCREENS.HOME)} />
+          )}
+          {screen === SCREENS.GAME && (
+            <Game
+              playerName={playerName}
+              language={chosenLanguage}
+              playedBugIds={playedBugIds}
+              onBugLoaded={handleBugLoaded}
+              onSubmitResult={handleSubmitResult}
+              onExhausted={handleChangeLang}
+            />
+          )}
+          {screen === SCREENS.RESULT && (
+            <Result
+              result={result}
+              bug={currentBug}
+              onPlayAgain={handlePlayAgain}
+              onLeaderboard={() => navigate(SCREENS.LEADERBOARD)}
+            />
+          )}
+          {screen === SCREENS.LEADERBOARD && (
+            <Leaderboard onBack={handleBackHome} />
+          )}
+        </motion.div>
+      </AnimatePresence>
     </div>
   )
 }

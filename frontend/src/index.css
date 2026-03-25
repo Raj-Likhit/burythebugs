@@ -18,6 +18,12 @@
   --text-tertiary: #484F58;
   --border: #30363D;
   --border-active: #00FF94;
+  
+  /* New Premium Tokens */
+  --glass-bg: rgba(22, 27, 34, 0.7);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --glow-green: 0 0 15px rgba(0, 255, 148, 0.3);
+  --glow-red: 0 0 15px rgba(255, 59, 59, 0.3);
 }
 
 * {
@@ -187,3 +193,135 @@ body {
 }
 .btn-outlined:hover { background: #00FF9410; transform: scale(1.02); }
 .btn-outlined:active { transform: scale(0.98); }
+
+/* Glassmorphism Utilities */
+.glass-pane {
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+}
+
+.glow-text-green { text-shadow: 0 0 10px rgba(0, 255, 148, 0.5); }
+.glow-text-red { text-shadow: 0 0 10px rgba(255, 59, 59, 0.5); }
+
+.glow-box-green { box-shadow: var(--glow-green); }
+.glow-box-red { box-shadow: var(--glow-red); }
+
+/* scanline effect */
+.scanlines {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(
+    to bottom,
+    rgba(18, 16, 16, 0) 50%,
+    rgba(0, 0, 0, 0.25) 50%
+  );
+  background-size: 100% 4px;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.1;
+}
+
+.scanlines::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(0, 255, 148, 0.05) 50%,
+    transparent 100%
+  );
+  animation: scanlineScroll 6s linear infinite;
+}
+
+@keyframes scanlineScroll {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100%); }
+}
+
+/* Cyber Particles */
+.digital-particle {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: #00FF94;
+  border-radius: 50%;
+  filter: blur(1px);
+  animation: particleRise var(--d, 10s) linear infinite;
+  opacity: 0.2;
+}
+
+@keyframes particleRise {
+  0% { transform: translateY(100vh) scale(1); opacity: 0; }
+  50% { opacity: 0.5; }
+  100% { transform: translateY(-20vh) scale(0.5); opacity: 0; }
+}
+
+/* VFX */
+.success-burst {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 10px;
+  height: 10px;
+  background: #00FF94;
+  border-radius: 50%;
+  box-shadow: 0 0 20px #00FF94;
+  animation: burst 1s ease-out forwards;
+}
+
+@keyframes burst {
+  0% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+  100% { transform: translate(-50%, -50%) scale(40); opacity: 0; }
+}
+
+@keyframes textGlitch {
+  0% { transform: translate(0); }
+  20% { transform: translate(-2px, 2px); }
+  40% { transform: translate(-2px, -2px); }
+  60% { transform: translate(2px, 2px); }
+  80% { transform: translate(2px, -2px); }
+  100% { transform: translate(0); }
+}
+
+.animate-glitch-slow {
+  animation: textGlitch 0.2s linear infinite;
+}
+
+.crt-glow {
+  box-shadow: 0 0 15px rgba(0, 255, 148, 0.1), inset 0 0 10px rgba(0, 255, 148, 0.05);
+}
+
+.monaco-editor {
+  border-radius: 8px !important;
+  overflow: hidden !important;
+}
+/* Glitch Effect */
+@keyframes glitch {
+  0% { transform: translate(0); }
+  20% { transform: translate(-2px, 2px); }
+  40% { transform: translate(-2px, -2px); }
+  60% { transform: translate(2px, 2px); }
+  80% { transform: translate(2px, -2px); }
+  100% { transform: translate(0); }
+}
+.hover-glitch:hover {
+  animation: glitch 0.3s cubic-bezier(.25,.46,.45,.94) both infinite;
+}
+
+/* Floating Animation */
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(var(--rotate)); }
+  50% { transform: translateY(-10px) rotate(calc(var(--rotate) + 2deg)); }
+}
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}

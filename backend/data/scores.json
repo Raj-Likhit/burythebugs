@@ -1,35 +1,156 @@
 [
   {
-    "id": "d321a700-f16d-43e8-81c7-16f358ba16bc",
-    "name": "TestPlayer",
+    "id": "0c87e77f-ea23-4cd5-9179-47a2267a4b26",
+    "name": "Test",
     "language": "python",
-    "bugId": 11,
-    "score": 0,
-    "timeRemaining": 214,
-    "difficulty": "hard",
-    "passed": false,
-    "timestamp": "2026-03-20T19:24:13.025Z"
+    "bugId": 8,
+    "score": 121,
+    "timeRemaining": 241,
+    "difficulty": "medium",
+    "passed": true,
+    "timestamp": "2026-03-21T14:36:44.796Z"
   },
   {
-    "id": "f8c26b6f-c864-4b63-aa57-be7c3ca77b82",
-    "name": "TestPlayer",
+    "id": "abf42e53-1515-4f9f-baeb-c8523253a864",
+    "name": "Test",
+    "language": "python",
+    "bugId": 2,
+    "score": 0,
+    "timeRemaining": 274,
+    "difficulty": "easy",
+    "passed": false,
+    "timestamp": "2026-03-21T14:37:25.340Z"
+  },
+  {
+    "id": "3e63e087-617f-40a6-b3c6-b30153eb2def",
+    "name": "Test",
+    "language": "python",
+    "bugId": 3,
+    "score": 0,
+    "timeRemaining": 297,
+    "difficulty": "easy",
+    "passed": false,
+    "timestamp": "2026-03-21T14:37:35.466Z"
+  },
+  {
+    "id": "bfd0c3cd-2753-44af-8b2f-538288713cc7",
+    "name": "Test",
+    "language": "python",
+    "bugId": 1,
+    "score": 0,
+    "timeRemaining": 282,
+    "difficulty": "easy",
+    "passed": false,
+    "timestamp": "2026-03-21T14:38:05.417Z"
+  },
+  {
+    "id": "ffddf4a4-51ac-4bbb-97e9-2f28925a040a",
+    "name": "Test",
+    "language": "python",
+    "bugId": 13,
+    "score": 0,
+    "timeRemaining": 298,
+    "difficulty": "hard",
+    "passed": false,
+    "timestamp": "2026-03-21T14:38:13.650Z"
+  },
+  {
+    "id": "2b2a344d-0367-444e-9707-eaacb6e654a7",
+    "name": "Test",
     "language": "python",
     "bugId": 1,
     "score": 0,
     "timeRemaining": 295,
     "difficulty": "easy",
     "passed": false,
-    "timestamp": "2026-03-20T19:26:51.576Z"
+    "timestamp": "2026-03-21T14:38:39.979Z"
   },
   {
-    "id": "24562031-7479-478d-aa95-c465038501c8",
-    "name": "TestRunner",
+    "id": "33d95114-cdd7-491d-8da7-197a550e5042",
+    "name": "Raj",
     "language": "python",
-    "bugId": 7,
-    "score": 0,
-    "timeRemaining": 283,
+    "bugId": 5,
+    "score": 97,
+    "timeRemaining": 292,
+    "difficulty": "easy",
+    "passed": true,
+    "timestamp": "2026-03-21T14:39:38.573Z"
+  },
+  {
+    "id": "dee71c1e-51f6-4625-b445-9d464df196ae",
+    "name": "Raj",
+    "language": "python",
+    "bugId": 8,
+    "score": 142,
+    "timeRemaining": 285,
     "difficulty": "medium",
+    "passed": true,
+    "timestamp": "2026-03-21T14:39:58.839Z"
+  },
+  {
+    "id": "60290dd7-377e-49d3-9232-81e35bdf505b",
+    "name": "Raj",
+    "language": "python",
+    "bugId": 8,
+    "score": 97,
+    "timeRemaining": 194,
+    "difficulty": "medium",
+    "passed": true,
+    "timestamp": "2026-03-23T16:11:52.271Z"
+  },
+  {
+    "id": "a92c70f3-1266-4b02-a4c2-c1636af6367c",
+    "name": "Testtt",
+    "language": "python",
+    "bugId": 11,
+    "score": 157,
+    "timeRemaining": 236,
+    "difficulty": "hard",
+    "passed": true,
+    "timestamp": "2026-03-23T16:13:35.963Z"
+  },
+  {
+    "id": "85736cdd-6d3d-494e-a214-06050372e93e",
+    "name": "Check",
+    "language": "python",
+    "bugId": 2,
+    "score": 0,
+    "timeRemaining": 278,
+    "difficulty": "easy",
     "passed": false,
-    "timestamp": "2026-03-21T11:12:25.161Z"
+    "timestamp": "2026-03-25T15:45:30.687Z"
+  },
+  {
+    "id": "edee096e-e406-4ab6-b033-5054ab3ae531",
+    "name": "Check",
+    "language": "python",
+    "bugId": 10,
+    "score": 75,
+    "timeRemaining": 149,
+    "difficulty": "medium",
+    "passed": true,
+    "timestamp": "2026-03-25T15:48:09.251Z"
+  },
+  {
+    "id": "49104b79-387c-48f2-9988-69a3ad7dcafa",
+    "name": "Check",
+    "language": "python",
+    "bugId": 1,
+    "score": 96,
+    "timeRemaining": 287,
+    "difficulty": "easy",
+    "passed": true,
+    "timestamp": "2026-03-25T15:48:30.781Z"
+  },
+  {
+    "id": "45da7b76-7346-4b24-be88-259c6759dbf8",
+    "name": "Likhit",
+    "language": "c",
+    "bugId": 16,
+    "score": 92,
+    "timeRemaining": 277,
+    "difficulty": "easy",
+    "passed": true,
+    "timestamp": "2026-03-25T15:49:58.133Z"
   }
 ]
