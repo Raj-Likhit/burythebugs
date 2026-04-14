@@ -41,9 +41,14 @@ app.use((err, req, res, next) => {
   res.status(500).json({ error: 'Internal server error' });
 });
 
-app.listen(PORT, () => {
-  console.log(`\n  ══════════════════════════════════════`);
-  console.log(`  ▓ BURY THE BUG — Backend Online     ▓`);
-  console.log(`  ▓ Port: ${PORT}                        ▓`);
-  console.log(`  ══════════════════════════════════════\n`);
-});
+// Export the app for Vercel
+module.exports = app;
+
+if (process.env.NODE_ENV !== 'production') {
+  app.listen(PORT, () => {
+    console.log(`\n  ══════════════════════════════════════`);
+    console.log(`  ▓ BURY THE BUG — Backend Online     ▓`);
+    console.log(`  ▓ Port: ${PORT}                        ▓`);
+    console.log(`  ══════════════════════════════════════\n`);
+  });
+}
