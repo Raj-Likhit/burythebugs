@@ -86,7 +86,9 @@ export default function Game() {
         setTimerRunning(true)
         return
       }
-      if (data.score > 0 && hintUsed) data.score = Math.max(0, data.score - 5);
+      const hintPenalty = { easy: 5, medium: 8, hard: 10 };
+      const penalty = hintPenalty[bug?.difficulty] || 5;
+      if (data.score > 0 && hintUsed) data.score = Math.max(0, data.score - penalty);
       
       if (data.score > 0) {
         playSuccessSound();
