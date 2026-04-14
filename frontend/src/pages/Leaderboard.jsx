@@ -85,6 +85,8 @@ export default function Leaderboard() {
     // Initial fetch to show data immediately
     fetchScores();
 
+    if (!supabase) return;
+
     // Setup Supabase Realtime for updates
     const channel = supabase
       .channel('leaderboard-updates')

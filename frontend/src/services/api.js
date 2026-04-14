@@ -4,7 +4,14 @@ import { createClient } from '@supabase/supabase-js';
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
 const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
 
-export const supabase = createClient(supabaseUrl, supabaseAnonKey);
+// Initialize Supabase only if credentials are provided to prevent crash
+export const supabase = (supabaseUrl && supabaseAnonKey) 
+  ? createClient(supabaseUrl, supabaseAnonKey)
+  : null;
+
+if (!supabase) {
+  console.warn('[Supabase] Missing credentials. Real-time updates and leaderboard will be limited.');
+}
 
 /**
  * Core API Service
@@ -57,6 +64,8 @@ export const api = {
   fetchLeaderboard: async () => {
     try {
       // Use Supabase directly for leaderboard fetching
+      if (!supabase) throw new Error('Supabase client not initialized');
+
       const { data, error } = await supabase
         .from('scores')
         .select('*')
