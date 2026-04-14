@@ -1,69 +1,28 @@
-import { useState, useEffect } from 'react'
+import { useEffect, lazy, Suspense } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { Loader2 } from 'lucide-react'
+import { useGameStore, SCREENS } from './store/useGameStore'
 import Home from './pages/Home'
-import LanguageSelect from './pages/LanguageSelect'
-import Game from './pages/Game'
-import Result from './pages/Result'
-import Leaderboard from './pages/Leaderboard'
 
-const SCREENS = { HOME: 'home', LANG: 'lang', GAME: 'game', RESULT: 'result', LEADERBOARD: 'leaderboard' }
+const LanguageSelect = lazy(() => import('./pages/LanguageSelect'))
+const Game = lazy(() => import('./pages/Game'))
+const Result = lazy(() => import('./pages/Result'))
+const Leaderboard = lazy(() => import('./pages/Leaderboard'))
+
+function ScreenFallback() {
+  return (
+    <div className="h-screen w-screen flex items-center justify-center bg-bg-primary">
+       <Loader2 className="animate-spin text-accent-green" size={48} />
+    </div>
+  )
+}
 
 function App() {
-  const [screen, setScreen] = useState(SCREENS.HOME)
-  const [playerName, setPlayerName] = useState('')
-  const [chosenLanguage, setChosenLanguage] = useState('')
-  const [currentBug, setCurrentBug] = useState(null)
-  const [result, setResult] = useState(null)
-  const [playedBugIds, setPlayedBugIds] = useState([])
+  const { screen, setPlayedBugIds } = useGameStore()
 
-  // Clear session on fresh page load
   useEffect(() => {
-    localStorage.removeItem('btb_session')
-    setPlayedBugIds([])
+    // Session is now persistent via Zustand.
   }, [])
-
-  const navigate = (newScreen) => setScreen(newScreen)
-
-  const handleDeploy = (name) => {
-    setPlayerName(name)
-    navigate(SCREENS.LANG)
-  }
-
-  const handleLanguageLock = (lang) => {
-    setChosenLanguage(lang)
-    navigate(SCREENS.GAME)
-  }
-
-  const handleBugLoaded = (bug) => {
-    setCurrentBug(bug)
-    setPlayedBugIds(prev => [...prev, bug.id])
-  }
-
-  const handleSubmitResult = (res) => {
-    setResult(res)
-    navigate(SCREENS.RESULT)
-  }
-
-  const handlePlayAgain = () => {
-    setResult(null)
-    setCurrentBug(null)
-    navigate(SCREENS.GAME)
-  }
-
-  const handleChangeLang = () => {
-    setResult(null)
-    setCurrentBug(null)
-    navigate(SCREENS.LANG)
-  }
-
-  const handleBackHome = () => {
-    setPlayerName('')
-    setChosenLanguage('')
-    setCurrentBug(null)
-    setResult(null)
-    setPlayedBugIds([])
-    navigate(SCREENS.HOME)
-  }
 
   const pageVariants = {
     initial: { opacity: 0, x: 20 },
@@ -72,7 +31,7 @@ function App() {
   }
 
   return (
-    <div className="min-h-screen bg-[#080B0F] text-[#E6EDF3] overflow-hidden relative">
+    <div className="min-h-screen app-bg text-primary overflow-hidden relative">
       {/* Scanline Overlay */}
       <div className="scanlines"></div>
  
@@ -86,33 +45,13 @@ function App() {
           transition={{ duration: 0.3, ease: "easeOut" }}
           className="min-h-screen w-full relative z-10"
         >
-          {screen === SCREENS.HOME && (
-            <Home onDeploy={handleDeploy} onViewLeaderboard={() => navigate(SCREENS.LEADERBOARD)} />
-          )}
-          {screen === SCREENS.LANG && (
-            <LanguageSelect onLock={handleLanguageLock} onBack={() => navigate(SCREENS.HOME)} />
-          )}
-          {screen === SCREENS.GAME && (
-            <Game
-              playerName={playerName}
-              language={chosenLanguage}
-              playedBugIds={playedBugIds}
-              onBugLoaded={handleBugLoaded}
-              onSubmitResult={handleSubmitResult}
-              onExhausted={handleChangeLang}
-            />
-          )}
-          {screen === SCREENS.RESULT && (
-            <Result
-              result={result}
-              bug={currentBug}
-              onPlayAgain={handlePlayAgain}
-              onLeaderboard={() => navigate(SCREENS.LEADERBOARD)}
-            />
-          )}
-          {screen === SCREENS.LEADERBOARD && (
-            <Leaderboard onBack={handleBackHome} />
-          )}
+          <Suspense fallback={<ScreenFallback />}>
+            {screen === SCREENS.HOME && <Home />}
+            {screen === SCREENS.LANG && <LanguageSelect />}
+            {screen === SCREENS.GAME && <Game />}
+            {screen === SCREENS.RESULT && <Result />}
+            {screen === SCREENS.LEADERBOARD && <Leaderboard />}
+          </Suspense>
         </motion.div>
       </AnimatePresence>
     </div>

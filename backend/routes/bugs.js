@@ -1,17 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const path = require('path');
-const fs = require('fs');
-
-const bugsPath = path.join(__dirname, '..', 'data', 'bugs.json');
-
-function loadBugs() {
-  const data = fs.readFileSync(bugsPath, 'utf-8');
-  return JSON.parse(data);
-}
+const db = require('../services/db');
 
 // GET /api/bug/random?language=python&exclude=1,2,3
-router.get('/random', (req, res) => {
+router.get('/random', async (req, res) => {
   try {
     const { language, exclude } = req.query;
 
@@ -24,7 +16,7 @@ router.get('/random', (req, res) => {
       return res.status(400).json({ error: `Invalid language. Must be one of: ${validLanguages.join(', ')}` });
     }
 
-    const bugs = loadBugs();
+    const bugs = await db.getBugs();
     let filtered = bugs.filter(b => b.language === language.toLowerCase());
 
     // Exclude already-played bug IDs
@@ -52,9 +44,9 @@ router.get('/random', (req, res) => {
 });
 
 // GET /api/bug/count
-router.get('/count', (req, res) => {
+router.get('/count', async (req, res) => {
   try {
-    const bugs = loadBugs();
+    const bugs = await db.getBugs();
     const counts = {
       total: bugs.length,
       python: bugs.filter(b => b.language === 'python').length,

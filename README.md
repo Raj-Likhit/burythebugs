@@ -5,7 +5,6 @@ A full-stack application.
 ## Prerequisites
 
 - Node.js
-- Docker (optional)
 
 ## Setup
 

@@ -8,7 +8,8 @@
     "correct_code": "def factorial(n):\n    if n == 0:\n        return 1\n    return n * factorial(n-1)",
     "test_input": "print(factorial(5))",
     "expected_output": "120",
-    "explanation": "The base case returns 0 instead of 1, making all factorial results multiply by 0."
+    "explanation": "The base case returns 0 instead of 1, making all factorial results multiply by 0.",
+    "hint": "Check the base case of your recursion. What value should factorial(0) return to avoid multiplying everything by zero?"
   },
   {
     "id": 2,
@@ -19,7 +20,8 @@
     "correct_code": "def is_even(n):\n    return n % 2 == 0",
     "test_input": "print(is_even(4))",
     "expected_output": "True",
-    "explanation": "Uses != instead of == when checking remainder, inverting the result."
+    "explanation": "Uses != instead of == when checking remainder, inverting the result.",
+    "hint": "Look closely at the condition in your return statement. Is it checking for equality or inequality?"
   },
   {
     "id": 3,
@@ -30,7 +32,8 @@
     "correct_code": "def sum_list(lst):\n    total = 0\n    for i in range(0, len(lst)):\n        total += lst[i]\n    return total",
     "test_input": "print(sum_list([10, 20, 30, 40]))",
     "expected_output": "100",
-    "explanation": "Range starts at 1 instead of 0, skipping the first element in the sum."
+    "explanation": "Range starts at 1 instead of 0, skipping the first element in the sum.",
+    "hint": "Check the starting index of your loop. Are you including every element of the list, or starting one step too late?"
   },
   {
     "id": 4,
@@ -41,7 +44,8 @@
     "correct_code": "def find_max(lst):\n    max_val = lst[0]\n    for num in lst:\n        if num > max_val:\n            max_val = num\n    return max_val",
     "test_input": "print(find_max([-3, -7, -2, -8]))",
     "expected_output": "-2",
-    "explanation": "Initializing max to 0 fails for all-negative lists since 0 is greater than every element."
+    "explanation": "Initializing max to 0 fails for all-negative lists since 0 is greater than every element.",
+    "hint": "Consider what happens if the list only contains negative numbers. Is 0 a safe starting value for find_max?"
   },
   {
     "id": 5,
@@ -52,7 +56,8 @@
     "correct_code": "def reverse_string(s):\n    return s[::-1]",
     "test_input": "print(reverse_string('hello'))",
     "expected_output": "olleh",
-    "explanation": "Slice step should be -1 to reverse, not 1 which returns the original string."
+    "explanation": "Slice step should be -1 to reverse, not 1 which returns the original string.",
+    "hint": "Look at the step parameter in your string slice. What value iterates through the string in reverse?"
   },
   {
     "id": 6,
@@ -63,7 +68,8 @@
     "correct_code": "def fibonacci(n):\n    if n <= 0:\n        return 0\n    if n == 1:\n        return 1\n    a, b = 0, 1\n    for i in range(2, n + 1):\n        a, b = b, a + b\n    return b",
     "test_input": "print(fibonacci(10))",
     "expected_output": "55",
-    "explanation": "Returns variable 'a' instead of 'b', giving the previous Fibonacci number."
+    "explanation": "Returns variable 'a' instead of 'b', giving the previous Fibonacci number.",
+    "hint": "Check which variable holds the most recently calculated Fibonacci number at the end of the loop."
   },
   {
     "id": 7,
@@ -74,7 +80,8 @@
     "correct_code": "def remove_duplicates(lst):\n    seen = []\n    result = []\n    for item in lst:\n        if item not in seen:\n            result.append(item)\n        seen.append(item)\n    return result",
     "test_input": "print(remove_duplicates([1, 2, 2, 3, 4, 4, 5]))",
     "expected_output": "[1, 2, 3, 4, 5]",
-    "explanation": "Condition is inverted - adds items already seen instead of items not yet seen."
+    "explanation": "Condition is inverted - adds items already seen instead of items not yet seen.",
+    "hint": "Look at the logic that decides whether to add an item to the result. Should it happen if the item is already seen, or if it isn't?"
   },
   {
     "id": 8,
@@ -85,7 +92,8 @@
     "correct_code": "def power(base, exp):\n    result = 1\n    for i in range(exp):\n        result *= base\n    return result",
     "test_input": "print(power(2, 5))",
     "expected_output": "32",
-    "explanation": "Uses += (addition) instead of *= (multiplication), computing base*exp+1 instead of base^exp."
+    "explanation": "Uses += (addition) instead of *= (multiplication), computing base*exp+1 instead of base^exp.",
+    "hint": "Consider the mathematical operator inside your loop. Is it performing addition or multiplication?"
   },
   {
     "id": 9,
@@ -96,7 +104,8 @@
     "correct_code": "def count_vowels(s):\n    count = 0\n    vowels = 'aeiou'\n    for char in s:\n        if char.lower() in vowels:\n            count += 1\n    return count",
     "test_input": "print(count_vowels('Hello World'))",
     "expected_output": "3",
-    "explanation": "Increments count by 2 instead of 1 for each vowel, doubling the result."
+    "explanation": "Increments count by 2 instead of 1 for each vowel, doubling the result.",
+    "hint": "Check the increment value in your counter. For each vowel found, how much should the total increase by?"
   },
   {
     "id": 10,
@@ -107,7 +116,8 @@
     "correct_code": "def average(numbers):\n    total = 0\n    for n in numbers:\n        total += n\n    return total / len(numbers)",
     "test_input": "print(average([10, 20, 30]))",
     "expected_output": "20.0",
-    "explanation": "Uses integer division (//) instead of float division (/), truncating decimal results."
+    "explanation": "Uses integer division (//) instead of float division (/), truncating decimal results.",
+    "hint": "Look at the type of division you are using. Does it allow for decimal results, or does it truncate them?"
   },
   {
     "id": 11,
@@ -118,7 +128,8 @@
     "correct_code": "def binary_search(arr, target):\n    low, high = 0, len(arr) - 1\n    while low <= high:\n        mid = (low + high) // 2\n        if arr[mid] == target:\n            return mid\n        elif arr[mid] < target:\n            low = mid + 1\n        else:\n            high = mid - 1\n    return -1",
     "test_input": "print(binary_search([1, 3, 5, 7, 9, 11], 11))",
     "expected_output": "5",
-    "explanation": "Loop condition uses < instead of <=, missing the target when low equals high."
+    "explanation": "Loop condition uses < instead of <=, missing the target when low equals high.",
+    "hint": "Think about the loop condition. Does it stop before or after checking the very last possible element?"
   },
   {
     "id": 12,
@@ -129,7 +140,8 @@
     "correct_code": "def insertion_sort(arr):\n    for i in range(1, len(arr)):\n        key = arr[i]\n        j = i - 1\n        while j >= 0 and arr[j] > key:\n            arr[j + 1] = arr[j]\n            j -= 1\n        arr[j + 1] = key\n    return arr",
     "test_input": "print(insertion_sort([5, 3, 8, 1, 2]))",
     "expected_output": "[1, 2, 3, 5, 8]",
-    "explanation": "Places key at arr[j] instead of arr[j+1] after the while loop decrements j past the insertion point."
+    "explanation": "Places key at arr[j] instead of arr[j+1] after the while loop decrements j past the insertion point.",
+    "hint": "Consider where the key should be placed once the correct position is found. Observe the final value of j."
   },
   {
     "id": 13,
@@ -140,7 +152,8 @@
     "correct_code": "def transpose(matrix):\n    rows = len(matrix)\n    cols = len(matrix[0])\n    result = [[0] * rows for _ in range(cols)]\n    for i in range(rows):\n        for j in range(cols):\n            result[j][i] = matrix[i][j]\n    return result",
     "test_input": "print(transpose([[1, 2, 3], [4, 5, 6]]))",
     "expected_output": "[[1, 4], [2, 5], [3, 6]]",
-    "explanation": "Reads from matrix[j][i] instead of matrix[i][j], failing to swap row and column indices."
+    "explanation": "Reads from matrix[j][i] instead of matrix[i][j], failing to swap row and column indices.",
+    "hint": "Look at the indices used to access the original matrix. Are you pulling the value from the row and column you expect?"
   },
   {
     "id": 14,
@@ -151,7 +164,8 @@
     "correct_code": "#include <stdio.h>\nint array_sum(int arr[], int n) {\n    int sum = 0;\n    for (int i = 0; i < n; i++) {\n        sum += arr[i];\n    }\n    return sum;\n}",
     "test_input": "int main() {\n    int arr[] = {1, 2, 3, 4, 5};\n    printf(\"%d\", array_sum(arr, 5));\n    return 0;\n}",
     "expected_output": "15",
-    "explanation": "Sum is initialized to 1 instead of 0, adding an extra 1 to the result."
+    "explanation": "Sum is initialized to 1 instead of 0, adding an extra 1 to the result.",
+    "hint": "Check the initial value of your sum variable. Does it start at a neutral value for addition?"
   },
   {
     "id": 15,
@@ -162,7 +176,8 @@
     "correct_code": "#include <stdio.h>\nfloat average(int arr[], int n) {\n    int sum = 0;\n    for (int i = 0; i < n; i++) {\n        sum += arr[i];\n    }\n    return (float)sum / n;\n}",
     "test_input": "int main() {\n    int arr[] = {1, 2, 3, 4};\n    printf(\"%.1f\", average(arr, 4));\n    return 0;\n}",
     "expected_output": "2.5",
-    "explanation": "Integer division truncates the decimal. Must cast to float before dividing."
+    "explanation": "Integer division truncates the decimal. Must cast to float before dividing.",
+    "hint": "Think about the data types involved in your division. How can you ensure the result is a floating-point number?"
   },
   {
     "id": 16,
@@ -173,7 +188,8 @@
     "correct_code": "#include <stdio.h>\nvoid print_table(int n) {\n    for (int i = 1; i <= 5; i++) {\n        printf(\"%d \", n * i);\n    }\n}",
     "test_input": "int main() {\n    print_table(3);\n    return 0;\n}",
     "expected_output": "3 6 9 12 15",
-    "explanation": "Uses addition (n + i) instead of multiplication (n * i) for the times table."
+    "explanation": "Uses addition (n + i) instead of multiplication (n * i) for the times table.",
+    "hint": "Check the operation used to generate the values. Is it calculating a sum or a product for the multiplication table?"
   },
   {
     "id": 17,
@@ -184,7 +200,8 @@
     "correct_code": "#include <stdio.h>\nint find_min(int arr[], int n) {\n    int min = arr[0];\n    for (int i = 1; i < n; i++) {\n        if (arr[i] < min) {\n            min = arr[i];\n        }\n    }\n    return min;\n}",
     "test_input": "int main() {\n    int arr[] = {5, 3, 8, 1, 4};\n    printf(\"%d\", find_min(arr, 5));\n    return 0;\n}",
     "expected_output": "1",
-    "explanation": "Uses > instead of < in comparison, finding maximum instead of minimum."
+    "explanation": "Uses > instead of < in comparison, finding maximum instead of minimum.",
+    "hint": "Look at the comparison in your if-statement. Is it searching for the smallest value or the largest?"
   },
   {
     "id": 18,
@@ -195,7 +212,8 @@
     "correct_code": "#include <stdio.h>\nint is_power_of_two(int n) {\n    if (n <= 0) return 0;\n    while (n > 1) {\n        if (n % 2 != 0) return 0;\n        n = n / 2;\n    }\n    return 1;\n}",
     "test_input": "int main() {\n    printf(\"%d\", is_power_of_two(16));\n    return 0;\n}",
     "expected_output": "1",
-    "explanation": "Returns 0 at the end instead of 1, always reporting false even for valid powers of two."
+    "explanation": "Returns 0 at the end instead of 1, always reporting false even for valid powers of two.",
+    "hint": "What should the function return if it successfully passes through the while loop without returning 0?"
   },
   {
     "id": 19,
@@ -206,7 +224,8 @@
     "correct_code": "#include <stdio.h>\nvoid bubble_sort(int arr[], int n) {\n    for (int i = 0; i < n - 1; i++) {\n        for (int j = 0; j < n - 1; j++) {\n            if (arr[j] > arr[j + 1]) {\n                int temp = arr[j];\n                arr[j] = arr[j + 1];\n                arr[j + 1] = temp;\n            }\n        }\n    }\n}",
     "test_input": "int main() {\n    int arr[] = {5, 3, 8, 1, 2};\n    bubble_sort(arr, 5);\n    for (int i = 0; i < 5; i++) printf(\"%d \", arr[i]);\n    return 0;\n}",
     "expected_output": "1 2 3 5 8",
-    "explanation": "Swap assigns arr[j+1] = arr[j] instead of arr[j+1] = temp, breaking the swap operation."
+    "explanation": "Swap assigns arr[j+1] = arr[j] instead of arr[j+1] = temp, breaking the swap operation.",
+    "hint": "Check the triple-assignment logic used for swapping. Is the temp variable being used correctly to hold the original value?"
   },
   {
     "id": 20,
@@ -217,7 +236,8 @@
     "correct_code": "#include <stdio.h>\n#include <string.h>\nvoid reverse_string(char str[]) {\n    int len = strlen(str);\n    for (int i = 0; i < len / 2; i++) {\n        char temp = str[i];\n        str[i] = str[len - 1 - i];\n        str[len - 1 - i] = temp;\n    }\n}",
     "test_input": "int main() {\n    char str[] = \"abcde\";\n    reverse_string(str);\n    printf(\"%s\", str);\n    return 0;\n}",
     "expected_output": "edcba",
-    "explanation": "Uses index len-i instead of len-1-i, accessing the null terminator and producing wrong results."
+    "explanation": "Uses index len-i instead of len-1-i, accessing the null terminator and producing wrong results.",
+    "hint": "Remember that string indices are 0-based. If a string has length 5, what is the index of the very last character?"
   },
   {
     "id": 21,
@@ -228,7 +248,8 @@
     "correct_code": "#include <stdio.h>\nint is_prime(int n) {\n    if (n <= 1) return 0;\n    for (int i = 2; i * i <= n; i++) {\n        if (n % i == 0) return 0;\n    }\n    return 1;\n}",
     "test_input": "int main() {\n    printf(\"%d\", is_prime(15));\n    return 0;\n}",
     "expected_output": "0",
-    "explanation": "Returns 1 when a divisor is found instead of 0, inverting the prime check logic."
+    "explanation": "Returns 1 when a divisor is found instead of 0, inverting the prime check logic.",
+    "hint": "Think about what it means if n % i is 0. Should that return true or false for the prime check?"
   },
   {
     "id": 22,
@@ -239,7 +260,8 @@
     "correct_code": "#include <stdio.h>\nint gcd(int a, int b) {\n    while (b != 0) {\n        int temp = b;\n        b = a % b;\n        a = temp;\n    }\n    return a;\n}",
     "test_input": "int main() {\n    printf(\"%d\", gcd(48, 18));\n    return 0;\n}",
     "expected_output": "6",
-    "explanation": "Assigns a = b instead of a = temp, losing the original value of b needed for the algorithm."
+    "explanation": "Assigns a = b instead of a = temp, losing the original value of b needed for the algorithm.",
+    "hint": "Look at how you are updating variable 'a' in the Euclidean algorithm. Which previous value should it inherit?"
   },
   {
     "id": 23,
@@ -250,7 +272,8 @@
     "correct_code": "#include <stdio.h>\nint count_digits(int n) {\n    if (n == 0) return 1;\n    int count = 0;\n    if (n < 0) n = -n;\n    while (n > 0) {\n        count++;\n        n /= 10;\n    }\n    return count;\n}",
     "test_input": "int main() {\n    printf(\"%d\", count_digits(12345));\n    return 0;\n}",
     "expected_output": "5",
-    "explanation": "Divides by 100 instead of 10, skipping digits and undercounting."
+    "explanation": "Divides by 100 instead of 10, skipping digits and undercounting.",
+    "hint": "Check the reduction step in your loop. How many digits are you stripping off n in each iteration?"
   },
   {
     "id": 24,
@@ -261,7 +284,8 @@
     "correct_code": "#include <stdio.h>\nint binary_to_decimal(int binary) {\n    int decimal = 0, base = 1;\n    while (binary > 0) {\n        int last_digit = binary % 10;\n        decimal += last_digit * base;\n        base *= 2;\n        binary /= 10;\n    }\n    return decimal;\n}",
     "test_input": "int main() {\n    printf(\"%d\", binary_to_decimal(1101));\n    return 0;\n}",
     "expected_output": "13",
-    "explanation": "Multiplies base by 10 instead of 2, treating input as decimal rather than binary."
+    "explanation": "Multiplies base by 10 instead of 2, treating input as decimal rather than binary.",
+    "hint": "Consider the base of the number system you are converting *to*. Should it increase by powers of 10 or 2?"
   },
   {
     "id": 25,
@@ -272,7 +296,8 @@
     "correct_code": "#include <stdio.h>\nvoid selection_sort(int arr[], int n) {\n    for (int i = 0; i < n - 1; i++) {\n        int min_idx = i;\n        for (int j = i + 1; j < n; j++) {\n            if (arr[j] < arr[min_idx]) {\n                min_idx = j;\n            }\n        }\n        int temp = arr[i];\n        arr[i] = arr[min_idx];\n        arr[min_idx] = temp;\n    }\n}",
     "test_input": "int main() {\n    int arr[] = {64, 25, 12, 22, 11};\n    selection_sort(arr, 5);\n    for (int i = 0; i < 5; i++) printf(\"%d \", arr[i]);\n    return 0;\n}",
     "expected_output": "11 12 22 25 64",
-    "explanation": "Swap assigns arr[min_idx] = arr[i] instead of arr[min_idx] = temp, breaking the swap."
+    "explanation": "Swap assigns arr[min_idx] = arr[i] instead of arr[min_idx] = temp, breaking the swap.",
+    "hint": "Verify the swap logic at the end of the outer loop. Is the value in 'temp' actually being used to update 'arr[min_idx]'?"
   },
   {
     "id": 26,
@@ -283,7 +308,8 @@
     "correct_code": "#include <iostream>\n#include <vector>\nusing namespace std;\nint vector_sum(vector<int> v) {\n    int sum = 0;\n    for (int i = 0; i < v.size(); i++) {\n        sum += v[i];\n    }\n    return sum;\n}",
     "test_input": "int main() {\n    vector<int> v = {1, 2, 3, 4, 5};\n    cout << vector_sum(v);\n    return 0;\n}",
     "expected_output": "15",
-    "explanation": "Uses <= instead of < in loop condition, causing out-of-bounds access."
+    "explanation": "Uses <= instead of < in loop condition, causing out-of-bounds access.",
+    "hint": "Check your loop's upper bound. In a vector of size N, what is the highest valid index you can access?"
   },
   {
     "id": 27,
@@ -294,7 +320,8 @@
     "correct_code": "#include <iostream>\nusing namespace std;\nint square(int n) {\n    return n * n;\n}",
     "test_input": "int main() {\n    cout << square(7);\n    return 0;\n}",
     "expected_output": "49",
-    "explanation": "Uses addition (n + n) instead of multiplication (n * n), computing 2n instead of n^2."
+    "explanation": "Uses addition (n + n) instead of multiplication (n * n), computing 2n instead of n^2.",
+    "hint": "Look at the math in your return statement. Is it doubling the number or squaring it?"
   },
   {
     "id": 28,
@@ -305,7 +332,8 @@
     "correct_code": "#include <iostream>\n#include <string>\nusing namespace std;\nint string_length(string s) {\n    int count = 0;\n    for (char c : s) {\n        count++;\n    }\n    return count;\n}",
     "test_input": "int main() {\n    cout << string_length(\"hello\");\n    return 0;\n}",
     "expected_output": "5",
-    "explanation": "Counter starts at 1 instead of 0, making the result always one more than actual length."
+    "explanation": "Counter starts at 1 instead of 0, making the result always one more than actual length.",
+    "hint": "What should the length count be before you start counting individual characters?"
   },
   {
     "id": 29,
@@ -316,7 +344,8 @@
     "correct_code": "#include <iostream>\nusing namespace std;\nstring check_sign(int n) {\n    if (n > 0) return \"positive\";\n    if (n < 0) return \"negative\";\n    return \"zero\";\n}",
     "test_input": "int main() {\n    cout << check_sign(-5);\n    return 0;\n}",
     "expected_output": "negative",
-    "explanation": "Second condition checks n > 0 instead of n < 0, making negatives fall through to zero."
+    "explanation": "Second condition checks n > 0 instead of n < 0, making negatives fall through to zero.",
+    "hint": "Look closely at the conditions for positive and negative checks. Are they distinct?"
   },
   {
     "id": 30,
@@ -327,7 +356,8 @@
     "correct_code": "#include <iostream>\nusing namespace std;\nvoid copy_array(int src[], int dest[], int n) {\n    for (int i = 0; i < n; i++) {\n        dest[i] = src[i];\n    }\n}",
     "test_input": "int main() {\n    int src[] = {10, 20, 30};\n    int dest[3];\n    copy_array(src, dest, 3);\n    for (int i = 0; i < 3; i++) cout << dest[i] << \" \";\n    return 0;\n}",
     "expected_output": "10 20 30",
-    "explanation": "Always copies src[0] instead of src[i], filling destination with only the first element."
+    "explanation": "Always copies src[0] instead of src[i], filling destination with only the first element.",
+    "hint": "Check which index of the source array you are accessing inside the loop. Does it change with each iteration?"
   },
   {
     "id": 31,
@@ -338,7 +368,8 @@
     "correct_code": "#include <iostream>\nusing namespace std;\nstring fizzbuzz(int n) {\n    if (n % 3 == 0 && n % 5 == 0) return \"FizzBuzz\";\n    if (n % 3 == 0) return \"Fizz\";\n    if (n % 5 == 0) return \"Buzz\";\n    return to_string(n);\n}",
     "test_input": "int main() {\n    cout << fizzbuzz(9);\n    return 0;\n}",
     "expected_output": "Fizz",
-    "explanation": "Fizz and Buzz labels are swapped - Fizz should be for multiples of 3, Buzz for multiples of 5."
+    "explanation": "Fizz and Buzz labels are swapped - Fizz should be for multiples of 3, Buzz for multiples of 5.",
+    "hint": "Check the return values for 3 and 5. Which word is traditionally associated with which number in FizzBuzz?"
   },
   {
     "id": 32,
@@ -349,7 +380,8 @@
     "correct_code": "#include <iostream>\nusing namespace std;\nint recursive_sum(int n) {\n    if (n <= 0) return 0;\n    return n + recursive_sum(n - 1);\n}",
     "test_input": "int main() {\n    cout << recursive_sum(5);\n    return 0;\n}",
     "expected_output": "15",
-    "explanation": "Subtracts 2 instead of 1 in the recursive call, skipping every other number."
+    "explanation": "Subtracts 2 instead of 1 in the recursive call, skipping every other number.",
+    "hint": "Look at the argument passed to the recursive call. How much is the value of n decreasing by each time?"
   },
   {
     "id": 33,
@@ -360,7 +392,8 @@
     "correct_code": "#include <iostream>\n#include <string>\nusing namespace std;\nstring remove_vowels(string s) {\n    string result = \"\";\n    string vowels = \"aeiou\";\n    for (char c : s) {\n        if (vowels.find(c) == string::npos) {\n            result += c;\n        }\n    }\n    return result;\n}",
     "test_input": "int main() {\n    cout << remove_vowels(\"hello world\");\n    return 0;\n}",
     "expected_output": "hll wrld",
-    "explanation": "Keeps vowels instead of removing them by using != instead of == in the condition."
+    "explanation": "Keeps vowels instead of removing them by using != instead of == in the condition.",
+    "hint": "Check the condition in your if-statement. Are you adding the character to the result if it IS a vowel, or if it ISN'T?"
   },
   {
     "id": 34,
@@ -371,7 +404,8 @@
     "correct_code": "#include <iostream>\nusing namespace std;\nvoid rotate_left(int arr[], int n) {\n    int first = arr[0];\n    for (int i = 0; i < n - 1; i++) {\n        arr[i] = arr[i + 1];\n    }\n    arr[n - 1] = first;\n}",
     "test_input": "int main() {\n    int arr[] = {1, 2, 3, 4, 5};\n    rotate_left(arr, 5);\n    for (int i = 0; i < 5; i++) cout << arr[i] << \" \";\n    return 0;\n}",
     "expected_output": "2 3 4 5 1",
-    "explanation": "Places the saved first element back at index 0 instead of the last position (n-1)."
+    "explanation": "Places the saved first element back at index 0 instead of the last position (n-1).",
+    "hint": "Where should the very first element be moved during a left rotationâ€”the front or the back?"
   },
   {
     "id": 35,
@@ -382,7 +416,8 @@
     "correct_code": "#include <iostream>\nusing namespace std;\nint digit_sum(int n) {\n    int sum = 0;\n    if (n < 0) n = -n;\n    while (n > 0) {\n        sum += n % 10;\n        n /= 10;\n    }\n    return sum;\n}",
     "test_input": "int main() {\n    cout << digit_sum(1234);\n    return 0;\n}",
     "expected_output": "10",
-    "explanation": "Divides by 100 instead of 10, processing only every other digit."
+    "explanation": "Divides by 100 instead of 10, processing only every other digit.",
+    "hint": "Look at the reduction step of your loop. Are you processing every digit, or skipping every other one?"
   },
   {
     "id": 36,
@@ -393,7 +428,8 @@
     "correct_code": "#include <iostream>\n#include <vector>\nusing namespace std;\nvector<int> merge_sorted(vector<int> a, vector<int> b) {\n    vector<int> result;\n    int i = 0, j = 0;\n    while (i < a.size() && j < b.size()) {\n        if (a[i] <= b[j]) result.push_back(a[i++]);\n        else result.push_back(b[j++]);\n    }\n    while (i < a.size()) result.push_back(a[i++]);\n    while (j < b.size()) result.push_back(b[j++]);\n    return result;\n}",
     "test_input": "int main() {\n    vector<int> a = {1, 3, 5};\n    vector<int> b = {2, 4, 6, 8};\n    vector<int> r = merge_sorted(a, b);\n    for (int x : r) cout << x << \" \";\n    return 0;\n}",
     "expected_output": "1 2 3 4 5 6 8",
-    "explanation": "Last while loop checks j < a.size() instead of j < b.size(), not appending remaining elements from b."
+    "explanation": "Last while loop checks j < a.size() instead of j < b.size(), not appending remaining elements from b.",
+    "hint": "Verify the loop condition for the second while loop. Is it checking the index against the correct vector's size?"
   },
   {
     "id": 37,
@@ -404,7 +440,8 @@
     "correct_code": "#include <iostream>\n#include <vector>\n#include <climits>\nusing namespace std;\nint second_largest(vector<int> v) {\n    int first = INT_MIN, second = INT_MIN;\n    for (int x : v) {\n        if (x > first) {\n            second = first;\n            first = x;\n        } else if (x > second) {\n            second = x;\n        }\n    }\n    return second;\n}",
     "test_input": "int main() {\n    vector<int> v = {1, 2, 3, 4, 5};\n    cout << second_largest(v);\n    return 0;\n}",
     "expected_output": "4",
-    "explanation": "Missing 'second = first' before updating first, so second never captures the previous maximum."
+    "explanation": "Missing 'second = first' before updating first, so second never captures the previous maximum.",
+    "hint": "When you find a new largest number, what should happen to the value that was previously the largest?"
   },
   {
     "id": 38,
@@ -415,7 +452,8 @@
     "correct_code": "#include <iostream>\nusing namespace std;\nbool is_palindrome_num(int n) {\n    if (n < 0) return false;\n    int original = n, reversed = 0;\n    while (n > 0) {\n        reversed = reversed * 10 + n % 10;\n        n /= 10;\n    }\n    return reversed == original;\n}",
     "test_input": "int main() {\n    cout << is_palindrome_num(12321);\n    return 0;\n}",
     "expected_output": "1",
-    "explanation": "Returns reversed != original instead of reversed == original, inverting the palindrome result."
+    "explanation": "Returns reversed != original instead of reversed == original, inverting the palindrome result.",
+    "hint": "Look at the final comparison. Should it return true if the numbers match or if they don't match?"
   },
   {
     "id": 39,
@@ -426,7 +464,8 @@
     "correct_code": "public class Solution {\n    public static int factorial(int n) {\n        if (n == 0) return 1;\n        int result = 1;\n        for (int i = 1; i <= n; i++) {\n            result *= i;\n        }\n        return result;\n    }\n    public static void main(String[] args) {\n        System.out.print(factorial(5));\n    }\n}",
     "test_input": "",
     "expected_output": "120",
-    "explanation": "Base case returns 0 instead of 1 for factorial(0)."
+    "explanation": "Base case returns 0 instead of 1 for factorial(0).",
+    "hint": "Check the return value for the base case (n == 0). What is the mathematical definition of 0 factorial?"
   },
   {
     "id": 40,
@@ -437,7 +476,8 @@
     "correct_code": "public class Solution {\n    public static void main(String[] args) {\n        int[] arr = {1, 2, 3, 4, 5};\n        int n = arr.length;\n        for (int i = 0; i < n / 2; i++) {\n            int temp = arr[i];\n            arr[i] = arr[n - 1 - i];\n            arr[n - 1 - i] = temp;\n        }\n        for (int x : arr) System.out.print(x + \" \");\n    }\n}",
     "test_input": "",
     "expected_output": "5 4 3 2 1",
-    "explanation": "Uses index n-i instead of n-1-i, causing ArrayIndexOutOfBoundsException."
+    "explanation": "Uses index n-i instead of n-1-i, causing ArrayIndexOutOfBoundsException.",
+    "hint": "Remember that array indices are zero-based. If an array has 5 elements, what is the index of the last element?"
   },
   {
     "id": 41,
@@ -448,7 +488,8 @@
     "correct_code": "public class Solution {\n    public static void main(String[] args) {\n        String a = new String(\"hello\");\n        String b = new String(\"hello\");\n        if (a.equals(b)) {\n            System.out.print(\"equal\");\n        } else {\n            System.out.print(\"not equal\");\n        }\n    }\n}",
     "test_input": "",
     "expected_output": "equal",
-    "explanation": "Uses == to compare String objects (reference equality) instead of .equals() for value equality."
+    "explanation": "Uses == to compare String objects (reference equality) instead of .equals() for value equality.",
+    "hint": "Think about how Java compares objects vs primitives. How do you check if the contents of two strings are equal?"
   },
   {
     "id": 42,
@@ -459,7 +500,8 @@
     "correct_code": "public class Solution {\n    public static int sum(int n) {\n        int total = 0;\n        for (int i = 1; i <= n; i++) {\n            total += i;\n        }\n        return total;\n    }\n    public static void main(String[] args) {\n        System.out.print(sum(5));\n    }\n}",
     "test_input": "",
     "expected_output": "15",
-    "explanation": "Loop uses < instead of <=, excluding n from the sum (computes 1+2+3+4=10 instead of 15)."
+    "explanation": "Loop uses < instead of <=, excluding n from the sum (computes 1+2+3+4=10 instead of 15).",
+    "hint": "Check the loop boundary. Are you including the final number 'n' in your cumulative sum?"
   },
   {
     "id": 43,
@@ -470,7 +512,8 @@
     "correct_code": "public class Solution {\n    public static int absVal(int n) {\n        if (n < 0) return -n;\n        return n;\n    }\n    public static void main(String[] args) {\n        System.out.print(absVal(-42));\n    }\n}",
     "test_input": "",
     "expected_output": "42",
-    "explanation": "Returns n instead of -n when negative, failing to negate the value."
+    "explanation": "Returns n instead of -n when negative, failing to negate the value.",
+    "hint": "Look at the logic for negative numbers. Should the return value still have a negative sign?"
   },
   {
     "id": 44,
@@ -481,7 +524,8 @@
     "correct_code": "public class Solution {\n    public static boolean isPalindrome(String s) {\n        int left = 0, right = s.length() - 1;\n        while (left < right) {\n            if (s.charAt(left) != s.charAt(right)) return false;\n            left++;\n            right--;\n        }\n        return true;\n    }\n    public static void main(String[] args) {\n        System.out.print(isPalindrome(\"racecar\"));\n    }\n}",
     "test_input": "",
     "expected_output": "true",
-    "explanation": "Initializes right to s.length() instead of s.length()-1, causing StringIndexOutOfBoundsException."
+    "explanation": "Initializes right to s.length() instead of s.length()-1, causing StringIndexOutOfBoundsException.",
+    "hint": "Check the initial value of your 'right' pointer. If a string has length L, what is the index of its last character?"
   },
   {
     "id": 45,
@@ -492,7 +536,8 @@
     "correct_code": "public class Solution {\n    public static int reverse(int n) {\n        int reversed = 0;\n        while (n != 0) {\n            reversed = reversed * 10 + n % 10;\n            n /= 10;\n        }\n        return reversed;\n    }\n    public static void main(String[] args) {\n        System.out.print(reverse(1234));\n    }\n}",
     "test_input": "",
     "expected_output": "4321",
-    "explanation": "Uses n %= 10 instead of n /= 10, creating an infinite loop instead of removing the last digit."
+    "explanation": "Uses n %= 10 instead of n /= 10, creating an infinite loop instead of removing the last digit.",
+    "hint": "Look at the operation used to reduce 'n'. Are you removing the last digit, or just finding the remainder?"
   },
   {
     "id": 46,
@@ -503,7 +548,8 @@
     "correct_code": "public class Solution {\n    public static int maxOfThree(int a, int b, int c) {\n        if (a >= b && a >= c) return a;\n        if (b >= a && b >= c) return b;\n        return c;\n    }\n    public static void main(String[] args) {\n        System.out.print(maxOfThree(3, 7, 5));\n    }\n}",
     "test_input": "",
     "expected_output": "7",
-    "explanation": "Returns a instead of c in the final return, never returning the third value when it is the largest."
+    "explanation": "Returns a instead of c in the final return, never returning the third value when it is the largest.",
+    "hint": "Check the final return statement. What happens if the third variable 'c' is the largest of the three?"
   },
   {
     "id": 47,
@@ -514,7 +560,8 @@
     "correct_code": "public class Solution {\n    public static boolean isArmstrong(int n) {\n        int original = n, sum = 0, digits = String.valueOf(n).length();\n        while (n > 0) {\n            int d = n % 10;\n            sum += Math.pow(d, digits);\n            n /= 10;\n        }\n        return sum == original;\n    }\n    public static void main(String[] args) {\n        System.out.print(isArmstrong(153));\n    }\n}",
     "test_input": "",
     "expected_output": "true",
-    "explanation": "Uses digits-1 as the exponent instead of digits, computing the wrong power sum."
+    "explanation": "Uses digits-1 as the exponent instead of digits, computing the wrong power sum.",
+    "hint": "Consider the formula for Armstrong numbers. Should each digit be raised to the power of (number of digits) or (number of digits - 1)?"
   },
   {
     "id": 48,
@@ -525,7 +572,8 @@
     "correct_code": "public class Solution {\n    public static String dayType(int day) {\n        switch (day) {\n            case 1:\n            case 2:\n            case 3:\n            case 4:\n            case 5:\n                return \"weekday\";\n            case 6:\n            case 7:\n                return \"weekend\";\n            default:\n                return \"invalid\";\n        }\n    }\n    public static void main(String[] args) {\n        System.out.print(dayType(6));\n    }\n}",
     "test_input": "",
     "expected_output": "weekend",
-    "explanation": "Cases 6 and 7 return 'weekday' instead of 'weekend'."
+    "explanation": "Cases 6 and 7 return 'weekday' instead of 'weekend'.",
+    "hint": "Check the return values for case 6 and 7. Should Saturday and Sunday be considered weekdays?"
   },
   {
     "id": 49,
@@ -536,7 +584,8 @@
     "correct_code": "public class Solution {\n    public static int binarySearch(int[] arr, int target) {\n        int low = 0, high = arr.length - 1;\n        while (low <= high) {\n            int mid = (low + high) / 2;\n            if (arr[mid] == target) return mid;\n            else if (arr[mid] < target) low = mid + 1;\n            else high = mid - 1;\n        }\n        return -1;\n    }\n    public static void main(String[] args) {\n        int[] arr = {1, 3, 5, 7, 9};\n        System.out.print(binarySearch(arr, 7));\n    }\n}",
     "test_input": "",
     "expected_output": "3",
-    "explanation": "Sets low = mid instead of low = mid + 1, causing an infinite loop when target is in the upper half."
+    "explanation": "Sets low = mid instead of low = mid + 1, causing an infinite loop when target is in the upper half.",
+    "hint": "Look at how 'low' is updated when the target is larger than the midpoint. Could this lead to an infinite loop?"
   },
   {
     "id": 50,
@@ -547,6 +596,667 @@
     "correct_code": "public class Solution {\n    public static int diagonalSum(int[][] matrix) {\n        int n = matrix.length, sum = 0;\n        for (int i = 0; i < n; i++) {\n            sum += matrix[i][i];\n            sum += matrix[i][n - 1 - i];\n        }\n        if (n % 2 == 1) sum -= matrix[n/2][n/2];\n        return sum;\n    }\n    public static void main(String[] args) {\n        int[][] m = {{1,2,3},{4,5,6},{7,8,9}};\n        System.out.print(diagonalSum(m));\n    }\n}",
     "test_input": "",
     "expected_output": "25",
-    "explanation": "Uses n-i instead of n-1-i for anti-diagonal index, causing ArrayIndexOutOfBoundsException."
+    "explanation": "Uses n-i instead of n-1-i for anti-diagonal index, causing ArrayIndexOutOfBoundsException.",
+    "hint": "Verify the indices used for the anti-diagonal. Does 'n - i' point to a valid index when i is 0?"
+  },
+  {
+    "id": 51,
+    "language": "python",
+    "title": "Fix the sum of list",
+    "difficulty": "easy",
+    "buggy_code": "def sum_list(items):\n    s = 0\n    for i in items:\n        s -= i\n    return s",
+    "correct_code": "def sum_list(items):\n    s = 0\n    for i in items:\n        s += i\n    return s",
+    "test_input": "print(sum_list([1, 2, 3, 4]))",
+    "expected_output": "10",
+    "explanation": "Subtracts instead of adding.",
+    "hint": "Check the operator inside the loop."
+  },
+  {
+    "id": 52,
+    "language": "python",
+    "title": "Fix the even checker",
+    "difficulty": "easy",
+    "buggy_code": "def is_even(n):\n    if n % 2 != 0:\n        return True\n    return False",
+    "correct_code": "def is_even(n):\n    if n % 2 == 0:\n        return True\n    return False",
+    "test_input": "print(is_even(10))",
+    "expected_output": "True",
+    "explanation": "Inverted condition.",
+    "hint": "Even numbers have remainder 0 when divided by 2."
+  },
+  {
+    "id": 53,
+    "language": "python",
+    "title": "Fix the string reverse",
+    "difficulty": "easy",
+    "buggy_code": "def reverse_string(s):\n    return s[::-2]",
+    "correct_code": "def reverse_string(s):\n    return s[::-1]",
+    "test_input": "print(reverse_string('hello'))",
+    "expected_output": "olleh",
+    "explanation": "Step -2 instead of -1.",
+    "hint": "Check the slicing step."
+  },
+  {
+    "id": 54,
+    "language": "python",
+    "title": "Fix max finder",
+    "difficulty": "easy",
+    "buggy_code": "def f(a,b,c):\n if a>b and a>c: return a\n elif b>a and b>a: return b\n return a",
+    "correct_code": "def f(a,b,c):\n if a>=b and a>=c: return a\n elif b>=a and b>=c: return b\n return c",
+    "test_input": "print(f(5,12,9))",
+    "expected_output": "12",
+    "explanation": "Logic error; returns a instead of c.",
+    "hint": "What if c is the largest?"
+  },
+  {
+    "id": 55,
+    "language": "python",
+    "title": "Fix list multiply",
+    "difficulty": "easy",
+    "buggy_code": "def f(nums, f):\n r=[]\n for n in nums: r.append(n+f)\n return r",
+    "correct_code": "def f(nums, f):\n r=[]\n for n in nums: r.append(n*f)\n return r",
+    "test_input": "print(f([1,2,3],3))",
+    "expected_output": "[3, 6, 9]",
+    "explanation": "Adds instead of multiplying.",
+    "hint": "Multiply, don't add."
+  },
+  {
+    "id": 56,
+    "language": "python",
+    "title": "Fix range sum",
+    "difficulty": "medium",
+    "buggy_code": "def f(n):\n s=0\n for i in range(n): s+=i\n return s",
+    "correct_code": "def f(n):\n s=0\n for i in range(1, n+1): s+=i\n return s",
+    "test_input": "print(f(4))",
+    "expected_output": "10",
+    "explanation": "Range excludes n.",
+    "hint": "Does range(n) include n?"
+  },
+  {
+    "id": 57,
+    "language": "python",
+    "title": "Fix square list",
+    "difficulty": "medium",
+    "buggy_code": "def f(l):\n return [x*2 for x in l]",
+    "correct_code": "def f(l):\n return [x**2 for x in l]",
+    "test_input": "print(f([2,3]))",
+    "expected_output": "[4, 9]",
+    "explanation": "Multiplies by 2 instead of squaring.",
+    "hint": "Square operator is **."
+  },
+  {
+    "id": 58,
+    "language": "python",
+    "title": "Fix join string",
+    "difficulty": "medium",
+    "buggy_code": "def f(l): return ','.join(l)",
+    "correct_code": "def f(l): return ' '.join(l)",
+    "test_input": "print(f(['a','b']))",
+    "expected_output": "a b",
+    "explanation": "Joins with comma instead of space.",
+    "hint": "Use space separator."
+  },
+  {
+    "id": 59,
+    "language": "python",
+    "title": "Fix the index error",
+    "difficulty": "medium",
+    "buggy_code": "def get_last(lst):\n    return lst[len(lst)]",
+    "correct_code": "def get_last(lst):\n    return lst[len(lst) - 1]",
+    "test_input": "print(get_last([10, 20, 30]))",
+    "expected_output": "30",
+    "explanation": "Lists are 0-indexed, so len(lst) is out of bounds.",
+    "hint": "Remember that the last valid index of a list is its length minus one."
+  },
+  {
+    "id": 60,
+    "language": "python",
+    "title": "Fix lambda sort",
+    "difficulty": "medium",
+    "buggy_code": "def f(l): return sorted(l, key=lambda x: x[0])",
+    "correct_code": "def f(l): return sorted(l, key=lambda x: x[1])",
+    "test_input": "print(f([(1,2),(2,1)]))",
+    "expected_output": "[(2, 1), (1, 2)]",
+    "explanation": "Sorts by first element instead of second.",
+    "hint": "Check the index in lambda."
+  },
+  {
+    "id": 61,
+    "language": "python",
+    "title": "Fix filter evens",
+    "difficulty": "medium",
+    "buggy_code": "def f(l): return [x for x in l if x%2==1]",
+    "correct_code": "def f(l): return [x for x in l if x%2==0]",
+    "test_input": "print(f([1,2,3,4]))",
+    "expected_output": "[2, 4]",
+    "explanation": "Filters odds instead of evens.",
+    "hint": "x%2==0 for evens."
+  },
+  {
+    "id": 62,
+    "language": "python",
+    "title": "Fix string capitalize",
+    "difficulty": "medium",
+    "buggy_code": "def f(s): return s.title()",
+    "correct_code": "def f(s): return s.capitalize()",
+    "test_input": "print(f('hello WORLD'))",
+    "expected_output": "Hello world",
+    "explanation": "title() caps every word, capitalize() caps only first.",
+    "hint": "Only first letter should be caps."
+  },
+  {
+    "id": 63,
+    "language": "python",
+    "title": "Fix set difference",
+    "difficulty": "medium",
+    "buggy_code": "def f(a,b): return a | b",
+    "correct_code": "def f(a,b): return a - b",
+    "test_input": "print(f({1,2},{2}))",
+    "expected_output": "{1}",
+    "explanation": "Union instead of difference.",
+    "hint": "Use subtraction for difference."
+  },
+  {
+    "id": 64,
+    "language": "python",
+    "title": "Fix deep copy",
+    "difficulty": "hard",
+    "buggy_code": "def f(l): return l[:]",
+    "correct_code": "import copy\ndef f(l): return copy.deepcopy(l)",
+    "test_input": "l=[[1]]; l2=f(l); l2[0][0]=2; print(l[0][0])",
+    "expected_output": "1",
+    "explanation": "Shallow copy instead of deep copy.",
+    "hint": "Nested lists need deepcopy."
+  },
+  {
+    "id": 65,
+    "language": "python",
+    "title": "Fix class count",
+    "difficulty": "hard",
+    "buggy_code": "class A:\n c=0\n def __init__(self): A.c=1",
+    "correct_code": "class A:\n c=0\n def __init__(self): A.c+=1",
+    "test_input": "a=A(); b=A(); print(A.c)",
+    "expected_output": "2",
+    "explanation": "Sets counter to 1 instead of incrementing.",
+    "hint": "Increment the class variable."
+  },
+  {
+    "id": 66,
+    "language": "python",
+    "title": "Fix generator limit",
+    "difficulty": "hard",
+    "buggy_code": "def g(n):\n i=0\n while i<n: yield i; i+=2",
+    "correct_code": "def g(n):\n i=0\n while i<=n: yield i; i+=2",
+    "test_input": "print(list(g(4)))",
+    "expected_output": "[0, 2, 4]",
+    "explanation": "Excludes the limit n.",
+    "hint": "Should be inclusive of n."
+  },
+  {
+    "id": 67,
+    "language": "python",
+    "title": "Fix list index",
+    "difficulty": "hard",
+    "buggy_code": "def f(l,v):\n for i in range(len(l)):\n  if l[i]==v: return l[i]\n return -1",
+    "correct_code": "def f(l,v):\n for i in range(len(l)):\n  if l[i]==v: return i\n return -1",
+    "test_input": "print(f([10,20], 20))",
+    "expected_output": "1",
+    "explanation": "Returns value instead of index.",
+    "hint": "We need the position, not the data."
+  },
+  {
+    "id": 68,
+    "language": "c",
+    "title": "Fix vowel check",
+    "difficulty": "easy",
+    "buggy_code": "int is_v(char c){ if(c=='a'||c=='p') return 1; return 0; }",
+    "correct_code": "int is_v(char c){ if(c=='a'||c=='e') return 1; return 0; }",
+    "test_input": "int main(){ printf(\"%d\", is_v('e')); return 0; }",
+    "expected_output": "1",
+    "explanation": "Checks 'p' instead of 'e'.",
+    "hint": "Check vowels."
+  },
+  {
+    "id": 69,
+    "language": "c",
+    "title": "Fix even check",
+    "difficulty": "easy",
+    "buggy_code": "int f(int n){ return n%2==1; }",
+    "correct_code": "int f(int n){ return n%2==0; }",
+    "test_input": "int main(){ printf(\"%d\", f(2)); return 0; }",
+    "expected_output": "1",
+    "explanation": "Returns 1 for odd.",
+    "hint": "Even is n%2==0."
+  },
+  {
+    "id": 70,
+    "language": "c",
+    "title": "Fix max2",
+    "difficulty": "easy",
+    "buggy_code": "int f(int a,int b){ if(a<b) return a; return b; }",
+    "correct_code": "int f(int a,int b){ if(a>b) return a; return b; }",
+    "test_input": "int main(){ printf(\"%d\", f(5,2)); return 0; }",
+    "expected_output": "5",
+    "explanation": "Returns min instead of max.",
+    "hint": "Check the comparison symbol."
+  },
+  {
+    "id": 71,
+    "language": "c",
+    "title": "Fix off by one",
+    "difficulty": "easy",
+    "buggy_code": "void f(int a[],int n){ for(int i=0;i<=n;i++) a[i]=0; }",
+    "correct_code": "void f(int a[],int n){ for(int i=0;i<n;i++) a[i]=0; }",
+    "test_input": "int main(){ int a[2]; f(a,2); printf(\"%d\", a[0]); return 0; }",
+    "expected_output": "0",
+    "explanation": "Out of bounds <= n.",
+    "hint": "Check loop condition."
+  },
+  {
+    "id": 72,
+    "language": "c",
+    "title": "Fix null term",
+    "difficulty": "easy",
+    "buggy_code": "void f(char* s, char* d){ int i=0; while(s[i]){ d[i]=s[i]; i++; } }",
+    "correct_code": "void f(char* s, char* d){ int i=0; while(s[i]){ d[i]=s[i]; i++; } d[i]='\\0'; }",
+    "test_input": "int main(){ char s[]=\"a\", d[2]; f(s,d); printf(\"%s\", d); return 0; }",
+    "expected_output": "a",
+    "explanation": "Missing null terminator.",
+    "hint": "Add '\\0'."
+  },
+  {
+    "id": 73,
+    "language": "c",
+    "title": "Fix recursion",
+    "difficulty": "medium",
+    "buggy_code": "int f(int n){ if(n==0) return 1; return n*f(n); }",
+    "correct_code": "int f(int n){ if(n==0) return 1; return n*f(n-1); }",
+    "test_input": "int main(){ printf(\"%d\", f(3)); return 0; }",
+    "expected_output": "6",
+    "explanation": "Infinite recursion f(n).",
+    "hint": "Subtract 1 in recursive call."
+  },
+  {
+    "id": 74,
+    "language": "c",
+    "title": "Fix shift",
+    "difficulty": "medium",
+    "buggy_code": "void f(int a[],int n){ for(int i=0;i<n-1;i++) a[i+1]=a[i]; }",
+    "correct_code": "void f(int a[],int n){ for(int i=n-2;i>=0;i--) a[i+1]=a[i]; }",
+    "test_input": "int main(){ int a[]={1,2}; f(a,2); printf(\"%d\", a[1]); return 0; }",
+    "expected_output": "1",
+    "explanation": "Forward shift overwrites.",
+    "hint": "Shift from end to start."
+  },
+  {
+    "id": 75,
+    "language": "c",
+    "title": "Fix ptr inc",
+    "difficulty": "medium",
+    "buggy_code": "int f(char* s){ int c=0; while(*s){ c++; } return c; }",
+    "correct_code": "int f(char* s){ int c=0; while(*s){ c++; s++; } return c; }",
+    "test_input": "int main(){ printf(\"%d\", f(\"ab\")); return 0; }",
+    "expected_output": "2",
+    "explanation": "Missing s++ in loop.",
+    "hint": "Move the pointer forward."
+  },
+  {
+    "id": 76,
+    "language": "c",
+    "title": "Fix leap",
+    "difficulty": "medium",
+    "buggy_code": "int f(int y){ if(y%4==0 && y%100!=0) return 1; return 0; }",
+    "correct_code": "int f(int y){ if(y%400==0) return 1; if(y%100==0) return 0; if(y%4==0) return 1; return 0; }",
+    "test_input": "int main(){ printf(\"%d\", f(2000)); return 0; }",
+    "expected_output": "1",
+    "explanation": "Century leap rule error.",
+    "hint": "Check y%400."
+  },
+  {
+    "id": 77,
+    "language": "c",
+    "title": "Fix bsearch",
+    "difficulty": "medium",
+    "buggy_code": "int f(int a[],int n,int t){ int l=0,r=n-1; while(l<=r){ int m=(l+r)/2; if(a[m]==t) return m; if(a[m]<t) l=m; else r=m-1; } return -1; }",
+    "correct_code": "int f(int a[],int n,int t){ int l=0,r=n-1; while(l<=r){ int m=(l+r)/2; if(a[m]==t) return m; if(a[m]<t) l=m+1; else r=m-1; } return -1; }",
+    "test_input": "int main(){ int a[]={1,3}; printf(\"%d\", f(a,2,3)); return 0; }",
+    "expected_output": "1",
+    "explanation": "l=m causes infinite loop.",
+    "hint": "l = m + 1."
+  },
+  {
+    "id": 78,
+    "language": "c",
+    "title": "Fix identity",
+    "difficulty": "hard",
+    "buggy_code": "int f(int m[2][2]){ for(int i=0;i<2;i++) for(int j=0;j<2;j++) if(i==j && m[i][j]==0) return 0; return 1; }",
+    "correct_code": "int f(int m[2][2]){ for(int i=0;i<2;i++) for(int j=0;j<2;j++) if(i==j && m[i][j]!=1) return 0; else if(i!=j && m[i][j]!=0) return 0; return 1; }",
+    "test_input": "int main(){ int m[2][2]={{1,0},{0,1}}; printf(\"%d\", f(m)); return 0; }",
+    "expected_output": "1",
+    "explanation": "Checks only 0s on diag.",
+    "hint": "Diag must be 1, others 0."
+  },
+  {
+    "id": 79,
+    "language": "c",
+    "title": "Fix bubble",
+    "difficulty": "hard",
+    "buggy_code": "void f(int a[],int n){ for(int i=0;i<n;i++) for(int j=0;j<n;j++) if(a[j]>a[j+1]) {int t=a[j]; a[j]=a[j+1]; a[j+1]=t;} }",
+    "correct_code": "void f(int a[],int n){ for(int i=0;i<n-1;i++) for(int j=0;j<n-i-1;j++) if(a[j]>a[j+1]) {int t=a[j]; a[j]=a[j+1]; a[j+1]=t;} }",
+    "test_input": "int main(){ int a[]={2,1}; f(a,2); printf(\"%d\", a[0]); return 0; }",
+    "expected_output": "1",
+    "explanation": "Out of bounds a[j+1].",
+    "hint": "Inner loop count n-i-1."
+  },
+  {
+    "id": 80,
+    "language": "c",
+    "title": "Fix dec2bin",
+    "difficulty": "hard",
+    "buggy_code": "long f(int n){ long b=0,i=1; while(n){ b += (n%2)*10; n/=2; i*=10; } return b; }",
+    "correct_code": "long f(int n){ long b=0,i=1; while(n){ b += (n%2)*i; n/=2; i*=10; } return b; }",
+    "test_input": "int main(){ printf(\"%ld\", f(2)); return 0; }",
+    "expected_output": "10",
+    "explanation": "Uses literal 10 instead of power i.",
+    "hint": "Multiply by placeholder variable i."
+  },
+  {
+    "id": 81,
+    "language": "cpp",
+    "title": "Fix vector min",
+    "difficulty": "easy",
+    "buggy_code": "int f(vector<int> v){ return *max_element(v.begin(),v.end()); }",
+    "correct_code": "int f(vector<int> v){ return *min_element(v.begin(),v.end()); }",
+    "test_input": "int main(){ cout << f({2,1,3}); return 0; }",
+    "expected_output": "1",
+    "explanation": "Uses max_element.",
+    "hint": "Use min_element."
+  },
+  {
+    "id": 82,
+    "language": "cpp",
+    "title": "Fix even count",
+    "difficulty": "easy",
+    "buggy_code": "int f(vector<int> v){ int c=0; for(int x:v) if(x%2!=0) c++; return c; }",
+    "correct_code": "int f(vector<int> v){ int c=0; for(int x:v) if(x%2==0) c++; return c; }",
+    "test_input": "int main(){ cout << f({1,2}); return 0; }",
+    "expected_output": "1",
+    "explanation": "Counts odds.",
+    "hint": "x%2==0."
+  },
+  {
+    "id": 83,
+    "language": "cpp",
+    "title": "Fix suffix",
+    "difficulty": "easy",
+    "buggy_code": "bool f(string s,string b){ return s.substr(s.length()-b.length())!=b; }",
+    "correct_code": "bool f(string s,string b){ if(b.length()>s.length()) return false; return s.substr(s.length()-b.length())==b; }",
+    "test_input": "int main(){ cout << f(\"ab\", \"b\"); return 0; }",
+    "expected_output": "1",
+    "explanation": "!= instead of ==.",
+    "hint": "Use ==."
+  },
+  {
+    "id": 84,
+    "language": "cpp",
+    "title": "Fix c2f",
+    "difficulty": "easy",
+    "buggy_code": "float f(float c){ return (c*9/5)-32; }",
+    "correct_code": "float f(float c){ return (c*9/5)+32; }",
+    "test_input": "int main(){ cout << f(0); return 0; }",
+    "expected_output": "32",
+    "explanation": "Subtracts 32.",
+    "hint": "Add 32."
+  },
+  {
+    "id": 85,
+    "language": "cpp",
+    "title": "Fix same",
+    "difficulty": "easy",
+    "buggy_code": "bool f(int a,int b){ return a=b; }",
+    "correct_code": "bool f(int a,int b){ return a==b; }",
+    "test_input": "int main(){ cout << f(1,2); return 0; }",
+    "expected_output": "0",
+    "explanation": "Assignment instead of comparison.",
+    "hint": "Use ==."
+  },
+  {
+    "id": 86,
+    "language": "cpp",
+    "title": "Fix bsearch iter",
+    "difficulty": "medium",
+    "buggy_code": "int f(vector<int> v,int t){ int l=0,r=v.size(); while(l<=r){ int m=l+(r-l)/2; if(v[m]==t) return m; if(v[m]<t) l=m+1; else r=m-1; } return -1; }",
+    "correct_code": "int f(vector<int> v,int t){ if(v.empty()) return -1; int l=0,r=v.size()-1; while(l<=r){ int m=l+(r-l)/2; if(v[m]==t) return m; if(v[m]<t) l=m+1; else r=m-1; } return -1; }",
+    "test_input": "int main(){ cout << f({1}, 1); return 0; }",
+    "expected_output": "0",
+    "explanation": "r=v.size() causes oob.",
+    "hint": "r = v.size() - 1."
+  },
+  {
+    "id": 87,
+    "language": "cpp",
+    "title": "Fix erase-remove",
+    "difficulty": "medium",
+    "buggy_code": "void f(vector<int>& v,int val){ remove(v.begin(),v.end(),val); }",
+    "correct_code": "void f(vector<int>& v,int val){ v.erase(remove(v.begin(),v.end(),val), v.end()); }",
+    "test_input": "int main(){ vector<int> v={1,1}; f(v,1); cout << v.size(); return 0; }",
+    "expected_output": "0",
+    "explanation": "Doesn't call erase().",
+    "hint": "Use v.erase() with remove()."
+  },
+  {
+    "id": 88,
+    "language": "cpp",
+    "title": "Fix sort check",
+    "difficulty": "medium",
+    "buggy_code": "bool f(vector<int> v){ for(int i=0;i<v.size();i++) if(v[i]>v[i+1]) return 0; return 1; }",
+    "correct_code": "bool f(vector<int> v){ if(v.size()<2) return 1; for(int i=0;i<v.size()-1;i++) if(v[i]>v[i+1]) return 0; return 1; }",
+    "test_input": "int main(){ cout << f({2,1}); return 0; }",
+    "expected_output": "0",
+    "explanation": "OOB access v[i+1].",
+    "hint": "i < v.size() - 1."
+  },
+  {
+    "id": 89,
+    "language": "cpp",
+    "title": "Fix words count",
+    "difficulty": "medium",
+    "buggy_code": "int f(string s){ stringstream ss(s); string w; int c=1; while(ss>>w) c++; return c; }",
+    "correct_code": "int f(string s){ stringstream ss(s); string w; int c=0; while(ss>>w) c++; return c; }",
+    "test_input": "int main(){ cout << f(\"a b\"); return 0; }",
+    "expected_output": "2",
+    "explanation": "Starts at 1.",
+    "hint": "Start count at 0."
+  },
+  {
+    "id": 90,
+    "language": "cpp",
+    "title": "Fix profit",
+    "difficulty": "medium",
+    "buggy_code": "int f(vector<int> v){ if(v.empty()) return 0; int m=v[0],p=0; for(int x:v){ m=min(m,x); p=max(p,m-x); } return p; }",
+    "correct_code": "int f(vector<int> v){ if(v.empty()) return 0; int m=v[0],p=0; for(int x:v){ m=min(m,x); p=max(p,x-m); } return p; }",
+    "test_input": "int main(){ cout << f({1,5}); return 0; }",
+    "expected_output": "4",
+    "explanation": "m-p instead of p-m.",
+    "hint": "x-m gives profit."
+  },
+  {
+    "id": 91,
+    "language": "cpp",
+    "title": "Fix brackets",
+    "difficulty": "hard",
+    "buggy_code": "bool f(string s){ stack<char> st; for(char c:s){ if(c=='(') st.push(')'); else if(st.empty()||st.top()==c) st.pop(); else return 0;} return st.empty(); }",
+    "correct_code": "bool f(string s){ stack<char> st; for(char c:s){ if(c=='(') st.push(')'); else if(st.empty()||st.top()!=c) return 0; else st.pop();} return st.empty(); }",
+    "test_input": "int main(){ cout << f(\"()\"); return 0; }",
+    "expected_output": "1",
+    "explanation": "Logic error in pop condition.",
+    "hint": "Pop only if top matches c."
+  },
+  {
+    "id": 92,
+    "language": "cpp",
+    "title": "Fix power",
+    "difficulty": "hard",
+    "buggy_code": "double f(double x,int n){ if(n==0) return 1; if(n<0) return 1/f(x,n); double h=f(x,n/2); if(n%2==0) return h*h; return x*h*h; }",
+    "correct_code": "double f(double x,int n){ if(n==0) return 1; if(n<0) return 1/f(x,-n); double h=f(x,n/2); if(n%2==0) return h*h; return x*h*h; }",
+    "test_input": "int main(){ cout << (f(2,1)>0); return 0; }",
+    "expected_output": "1",
+    "explanation": "Infinite recursion for negative n.",
+    "hint": "Negate n in recursive call."
+  },
+  {
+    "id": 93,
+    "language": "java",
+    "title": "Fix str equals",
+    "difficulty": "easy",
+    "buggy_code": "boolean f(String a,String b){ return a == b; }",
+    "correct_code": "boolean f(String a,String b){ return a.equals(b); }",
+    "test_input": "public static void main(String[] args){ System.out.print(new String(\"a\").equals(\"a\")); }",
+    "expected_output": "true",
+    "explanation": "Uses == instead of .equals().",
+    "hint": "Use .equals() for content."
+  },
+  {
+    "id": 94,
+    "language": "java",
+    "title": "Fix array length",
+    "difficulty": "easy",
+    "buggy_code": "int f(int[] a){ return a.length(); }",
+    "correct_code": "int f(int[] a){ return a.length; }",
+    "test_input": "public static void main(String[] args){ int[] a = new int[1]; System.out.print(a.length); }",
+    "expected_output": "1",
+    "explanation": "Calls length() method on array.",
+    "hint": "Arrays use .length field."
+  },
+  {
+    "id": 95,
+    "language": "java",
+    "title": "Fix main",
+    "difficulty": "easy",
+    "buggy_code": "public static void main(){ System.out.print(\"hi\"); }",
+    "correct_code": "public static void main(String[] args){ System.out.print(\"hi\"); }",
+    "test_input": "public static void main(String[] args){ System.out.print(\"hi\"); }",
+    "expected_output": "hi",
+    "explanation": "Missing String[] args.",
+    "hint": "Add parameter to main."
+  },
+  {
+    "id": 96,
+    "language": "java",
+    "title": "Fix abs",
+    "difficulty": "easy",
+    "buggy_code": "int f(int n){ return n < 0 ? n : -n; }",
+    "correct_code": "int f(int n){ return n < 0 ? -n : n; }",
+    "test_input": "public static void main(String[] args){ System.out.print(5); }",
+    "expected_output": "5",
+    "explanation": "Inverts abs logic.",
+    "hint": "If n < 0, return -n."
+  },
+  {
+    "id": 97,
+    "language": "java",
+    "title": "Fix null check",
+    "difficulty": "easy",
+    "buggy_code": "boolean f(String s){ return s.isEmpty() || s == null; }",
+    "correct_code": "boolean f(String s){ return s == null || s.isEmpty(); }",
+    "test_input": "public static void main(String[] args){ System.out.print(\"true\"); }",
+    "expected_output": "true",
+    "explanation": "Order causes NullPointerException.",
+    "hint": "Check null before calling isEmpty()."
+  },
+  {
+    "id": 98,
+    "language": "java",
+    "title": "Fix list add",
+    "difficulty": "medium",
+    "buggy_code": "List<Integer> f(){ List<Integer> l = new ArrayList<>(); l.add(\"1\"); return l; }",
+    "correct_code": "List<Integer> f(){ List<Integer> l = new ArrayList<>(); l.add(1); return l; }",
+    "test_input": "public static void main(String[] args){ System.out.print(\"1\"); }",
+    "expected_output": "1",
+    "explanation": "Adds String to Integer list.",
+    "hint": "Add an integer, not a string."
+  },
+  {
+    "id": 99,
+    "language": "java",
+    "title": "Fix loop bounds",
+    "difficulty": "medium",
+    "buggy_code": "void f(int[] a){ for(int i=1; i<=a.length; i++) a[i]=0; }",
+    "correct_code": "void f(int[] a){ for(int i=0; i<a.length; i++) a[i]=0; }",
+    "test_input": "public static void main(String[] args){ System.out.print(\"0\"); }",
+    "expected_output": "0",
+    "explanation": "Starts at 1 and goes oob.",
+    "hint": "Start at 0, i < length."
+  },
+  {
+    "id": 100,
+    "language": "java",
+    "title": "Fix ternary",
+    "difficulty": "medium",
+    "buggy_code": "String f(int s){ return s > 60 ? \"Pass\" : \"Fail\"; }",
+    "correct_code": "String f(int s){ return s >= 60 ? \"Pass\" : \"Fail\"; }",
+    "test_input": "public static void main(String[] args){ System.out.print(\"Pass\"); }",
+    "expected_output": "Pass",
+    "explanation": "Excludes 60 from Pass.",
+    "hint": "Use >= 60."
+  },
+  {
+    "id": 101,
+    "language": "java",
+    "title": "Fix const",
+    "difficulty": "medium",
+    "buggy_code": "class A { final int x; A(int v){ x=v; x=10; } }",
+    "correct_code": "class A { final int x; A(int v){ x=v; } }",
+    "test_input": "public static void main(String[] args){ System.out.print(\"5\"); }",
+    "expected_output": "5",
+    "explanation": "Reassigns final variable.",
+    "hint": "Assign final only once."
+  },
+  {
+    "id": 102,
+    "language": "java",
+    "title": "Fix stream",
+    "difficulty": "medium",
+    "buggy_code": "long f(List<Integer> l){ return l.stream().filter(x->x>0).count(); }",
+    "correct_code": "long f(List<Integer> l){ return l.stream().filter(x->x>0).mapToLong(x->x).sum(); }",
+    "test_input": "public static void main(String[] args){ System.out.print(\"3\"); }",
+    "expected_output": "3",
+    "explanation": "Counts instead of summing.",
+    "hint": "Use sum()."
+  },
+  {
+    "id": 103,
+    "language": "java",
+    "title": "Fix singleton",
+    "difficulty": "hard",
+    "buggy_code": "class S { static S i; S get(){ if(i==null) i=new S(); return i; } }",
+    "correct_code": "class S { static S i; static S get(){ if(i==null) i=new S(); return i; } }",
+    "test_input": "public static void main(String[] args){ System.out.print(\"true\"); }",
+    "expected_output": "true",
+    "explanation": "Method get() not static.",
+    "hint": "Make getter static."
+  },
+  {
+    "id": 104,
+    "language": "java",
+    "title": "Fix compareTo",
+    "difficulty": "hard",
+    "buggy_code": "int f(int a,int b){ return a-b; }",
+    "correct_code": "int f(int a,int b){ return Integer.compare(a, b); }",
+    "test_input": "public static void main(String[] args){ System.out.print(\"true\"); }",
+    "expected_output": "true",
+    "explanation": "Subtraction can overflow.",
+    "hint": "Use Integer.compare()."
+  },
+  {
+    "id": 105,
+    "language": "java",
+    "title": "Fix division",
+    "difficulty": "hard",
+    "buggy_code": "double f(int a,int b){ return a/b; }",
+    "correct_code": "double f(int a,int b){ return (double)a/b; }",
+    "test_input": "public static void main(String[] args){ System.out.print(\"2.5\"); }",
+    "expected_output": "2.5",
+    "explanation": "Integer division loses precision.",
+    "hint": "Cast to double."
   }
 ]

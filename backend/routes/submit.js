@@ -1,123 +1,64 @@
 const express = require('express');
 const router = express.Router();
-const path = require('path');
-const fs = require('fs');
 const { v4: uuidv4 } = require('uuid');
+const db = require('../services/db');
 
-const bugsPath = path.join(__dirname, '..', 'data', 'bugs.json');
-const scoresPath = path.join(__dirname, '..', 'data', 'scores.json');
-
-const PISTON_URL = 'http://localhost:2000/api/v2/execute';
-
-const LANGUAGE_MAP = {
-  python: { language: 'python', version: '3.10.0' },
-  c:      { language: 'c',      version: '10.2.0' },
-  cpp:    { language: 'c++',    version: '10.2.0' },
-  java:   { language: 'java',   version: '15.0.2' }
-};
-
-function loadBugs() {
-  return JSON.parse(fs.readFileSync(bugsPath, 'utf-8'));
-}
-
-function loadScores() {
-  try {
-    return JSON.parse(fs.readFileSync(scoresPath, 'utf-8'));
-  } catch {
-    return [];
-  }
-}
-
-function saveScores(scores) {
-  fs.writeFileSync(scoresPath, JSON.stringify(scores, null, 2), 'utf-8');
+/**
+ * Normalizes code for comparison by:
+ * 1. Removing all whitespace
+ * 2. Removing comments (single line and multi-line)
+ * 3. Removing semicolons (optional, but helps with consistency)
+ */
+function normalizeCode(code) {
+  if (!code) return '';
+  return code
+    .replace(/\/\/.*|\/\*[\s\S]*?\*\//g, '') // Remove comments
+    .replace(/(\w)\s+(\w)/g, '$1 $2')         // Keep at least one space between words/keywords
+    .replace(/\s+/g, ' ')                     // Reduce multiple spaces to one
+    .replace(/;/g, '')                         // Remove semicolons
+    .trim();
 }
 
 // POST /api/submit
 router.post('/', async (req, res) => {
   try {
-    const { name, bugId, fixedCode, timeRemaining, language } = req.body;
+    const { name, rollNo, bugId, fixedCode, timeRemaining, language } = req.body;
 
-    if (!name || !bugId || fixedCode === undefined || timeRemaining === undefined || !language) {
-      return res.status(400).json({ error: 'Missing required fields: name, bugId, fixedCode, timeRemaining, language' });
+    if (!name || !rollNo || !bugId || fixedCode === undefined || timeRemaining === undefined || !language) {
+      return res.status(400).json({ error: 'Missing required fields' });
     }
 
-    const bugs = loadBugs();
+    const bugs = await db.getBugs();
     const bug = bugs.find(b => b.id === bugId);
     if (!bug) {
       return res.status(404).json({ error: 'Bug not found' });
     }
 
-    const langConfig = LANGUAGE_MAP[language];
-    if (!langConfig) {
-      return res.status(400).json({ error: 'Invalid language' });
-    }
-
-    // Build the full code: fixedCode + test_input
-    let fullCode = fixedCode;
-    if (bug.test_input && bug.test_input.trim() !== '') {
-      fullCode = fixedCode + '\n' + bug.test_input;
-    }
-
-    // Execute on Piston
-    let pistonResult;
-    try {
-      const response = await fetch(PISTON_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          language: langConfig.language,
-          version: langConfig.version,
-          files: [{ content: fullCode }]
-        })
-      });
-
-      if (!response.ok) {
-        throw new Error(`Piston returned ${response.status}`);
-      }
-
-      pistonResult = await response.json();
-    } catch (err) {
-      console.error('[PISTON ERROR]', err.message);
-      return res.status(503).json({ error: 'Compiler offline. Check Docker.' });
-    }
-
-    // Get stdout from run output
-    const stdout = (pistonResult.run?.stdout || '').trim();
-    const stderr = pistonResult.run?.stderr || '';
-    const expectedOutput = (bug.expected_output || '').trim();
-    const passed = stdout === expectedOutput;
+    // Local Validation Logic
+    const userNormalized = normalizeCode(fixedCode);
+    const correctNormalized = normalizeCode(bug.correct_code);
+    const passed = userNormalized === correctNormalized;
 
     // Calculate score
     const difficultyMultiplier = { easy: 1, medium: 1.5, hard: 2 };
-    const multiplier = difficultyMultiplier[bug.difficulty] || 1;
+    const languageMultipliers = { python: 1.0, java: 1.2, cpp: 1.1, c: 1.1 };
+
+    const diffMult = difficultyMultiplier[bug.difficulty] || 1;
+    const langMult = languageMultipliers[language.toLowerCase()] || 1.0;
     const timeBonus = Math.max(0, timeRemaining) / 300;
-    const score = passed ? Math.round(multiplier * timeBonus * 100) : 0;
+    
+    const score = passed ? Math.round(diffMult * langMult * timeBonus * 100) : 0;
 
-    // Save to leaderboard
-    const scoreEntry = {
-      id: uuidv4(),
-      name,
-      language,
-      bugId,
-      score,
-      timeRemaining: Math.max(0, timeRemaining),
-      difficulty: bug.difficulty,
-      passed,
-      timestamp: new Date().toISOString()
-    };
-
-    const scores = loadScores();
-    scores.push(scoreEntry);
-    saveScores(scores);
+    // Removed db logic here as this is no longer saving individual bugs to the leaderboard.
 
     res.json({
       passed,
       score,
       explanation: bug.explanation,
       correct_code: bug.correct_code,
-      stdout,
-      stderr,
-      expected_output: expectedOutput
+      stdout: passed ? 'Validation Successful' : 'Validation Failed: Logic does not match correct solution.',
+      stderr: '',
+      expected_output: 'Match with correct_code'
     });
   } catch (err) {
     console.error('[SUBMIT]', err.message);
