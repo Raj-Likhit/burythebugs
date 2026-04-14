@@ -14,8 +14,9 @@ export default function LanguageCard({ language, isSelected, onClick }) {
         relative w-full h-[160px] rounded-2xl p-6 flex flex-col items-center justify-center gap-2
         transition-all duration-300 cursor-pointer text-left overflow-hidden glass-pane
         focus:outline-none focus:ring-2 focus:ring-accent-green focus:ring-offset-2 focus:ring-offset-bg-primary
+        hover:ring-2 hover:ring-accent-green/30
         ${isSelected
-          ? 'border-2 border-accent-green shadow-[0_0_30px_rgba(0,255,148,0.1)]'
+          ? 'border-2 border-accent-green shadow-[0_0_30px_rgba(0,255,148,0.1)] ring-2 ring-accent-green/20'
           : 'border border-border hover:border-accent-green/40'
         }
       `}
