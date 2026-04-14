@@ -15,7 +15,7 @@ const MONACO_LANG = { python: 'python', c: 'c', cpp: 'cpp', java: 'java' }
 export default function Game() {
   const { 
     playerName, rollNo, chosenLanguage: language, playedBugIds, addPlayedBugId, 
-    setCurrentBug, setResult, setScreen, currentRound, addScore 
+    setCurrentBug, setResult, setScreen, currentRound, addScore, incrementSolvedStat
   } = useGameStore();
 
   const [bug, setBug] = useState(null)
@@ -92,6 +92,7 @@ export default function Game() {
       
       if (data.score > 0) {
         playSuccessSound();
+        incrementSolvedStat(bug?.difficulty);
       } else {
         playErrorSound();
       }

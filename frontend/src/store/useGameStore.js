@@ -21,6 +21,7 @@ export const useGameStore = create(
       playedBugIds: [],
       currentRound: 1,
       cumulativeScore: 0,
+      solvedStats: { easy: 0, medium: 0, hard: 0 },
       
       setScreen: (screen) => set({ screen }),
       setPlayerName: (name) => set({ playerName: name }),
@@ -36,6 +37,12 @@ export const useGameStore = create(
       setResult: (result) => set({ result }),
       incrementRound: () => set((state) => ({ currentRound: state.currentRound + 1 })),
       addScore: (points) => set((state) => ({ cumulativeScore: state.cumulativeScore + points })),
+      incrementSolvedStat: (diff) => set((state) => ({
+        solvedStats: { 
+          ...state.solvedStats, 
+          [diff]: (state.solvedStats[diff] || 0) + 1 
+        }
+      })),
       
       resetGameSession: () => set({
         result: null,
@@ -51,7 +58,8 @@ export const useGameStore = create(
         result: null,
         playedBugIds: [],
         currentRound: 1,
-        cumulativeScore: 0
+        cumulativeScore: 0,
+        solvedStats: { easy: 0, medium: 0, hard: 0 }
       })
     }),
     {

@@ -7,7 +7,7 @@ import { api } from "../services/api";
 export default function Result() {
   const { 
     result, currentBug: bug, setScreen, setResult, 
-    currentRound, incrementRound, cumulativeScore,
+    currentRound, incrementRound, cumulativeScore, solvedStats,
     playerName, rollNo, chosenLanguage: language
   } = useGameStore();
   const [showSolution, setShowSolution] = useState(false);
@@ -49,11 +49,19 @@ export default function Result() {
   const handleSubmitFinal = async () => {
     if (isSubmittingFinal) return;
     setIsSubmittingFinal(true);
+    
+    // Calculate Weighted Tie-Breaker Score
+    // Easy = 1, Medium = 10, Hard = 100
+    const difficultyScore = (solvedStats?.hard || 0) * 100 + 
+                           (solvedStats?.medium || 0) * 10 + 
+                           (solvedStats?.easy || 0) * 1;
+                           
     const payload = {
       name: playerName,
       rollNo,
       language,
-      totalScore: cumulativeScore
+      totalScore: cumulativeScore,
+      difficultyScore
     };
     
     await api.submitLeaderboard(payload);

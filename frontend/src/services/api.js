@@ -70,6 +70,7 @@ export const api = {
         .from('scores')
         .select('*')
         .order('score', { ascending: false })
+        .order('difficulty_score', { ascending: false })
         .limit(20);
 
       if (error) throw error;

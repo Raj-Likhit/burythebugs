@@ -49,7 +49,7 @@ router.get('/', async (req, res) => {
   try {
     const scores = await db.getScores();
     const top20 = scores
-      .sort((a, b) => b.score - a.score)
+      .sort((a, b) => (b.score - a.score) || (b.difficulty_score - a.difficulty_score))
       .slice(0, 20);
     res.json(top20);
   } catch (err) {
@@ -61,7 +61,7 @@ router.get('/', async (req, res) => {
 // POST /api/leaderboard
 router.post('/', async (req, res) => {
   try {
-    const { name, rollNo, language, totalScore } = req.body;
+    const { name, rollNo, language, totalScore, difficultyScore } = req.body;
     
     if (!name || !rollNo || !language || totalScore === undefined) {
       return res.status(400).json({ error: 'Missing required payload for aggregate scoring.' });
@@ -73,6 +73,7 @@ router.post('/', async (req, res) => {
       rollNo,
       language,
       score: totalScore,
+      difficulty_score: difficultyScore || 0,
       timestamp: new Date().toISOString()
     };
     
