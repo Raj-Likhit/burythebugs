@@ -41,7 +41,7 @@ router.post('/', async (req, res) => {
 
     // Calculate score
     const difficultyMultiplier = { easy: 1, medium: 1.5, hard: 2 };
-    const languageMultipliers = { python: 1.0, java: 1.2, cpp: 1.1, c: 1.1 };
+    const languageMultipliers = { python: 1.0, java: 1.1, cpp: 1.05, c: 1.05 };
 
     const diffMult = difficultyMultiplier[bug.difficulty] || 1;
     const langMult = languageMultipliers[language.toLowerCase()] || 1.0;

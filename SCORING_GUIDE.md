@@ -24,8 +24,8 @@ We provide a slight "typing boost" for languages that require more syntax.
 | Language | Multiplier | Rationale |
 | :--- | :--- | :--- |
 | **Python** | `1.0x` | Concise syntax, easy to read. |
-| **C / C++** | `1.1x` | Manual memory management/pointers. |
-| **Java** | `1.2x` | Highly verbose boilerplate. |
+| **C / C++** | `1.05x` | Manual memory management/pointers. |
+| **Java** | `1.1x` | Highly verbose boilerplate. |
 
 ### 3. Time Bonus
 Speed is critical. You lose points as the timer counts down.
@@ -46,12 +46,12 @@ Speed is critical. You lose points as the timer counts down.
 | Language | Easy | Medium | Hard |
 | :--- | :--- | :--- | :--- |
 | **Python** | 100 pts | 150 pts | 200 pts |
-| **C / C++** | 110 pts | 165 pts | 220 pts |
-| **Java** | 120 pts | 180 pts | 240 pts |
+| **C / C++** | 105 pts | 158 pts | 210 pts |
+| **Java** | 110 pts | 165 pts | 220 pts |
 
 ---
 
 ## 💡 Strategy Tips
 1.  **Don't Rush the Hint**: Only use the hint if you are truly stuck, as that -5 penalty can be the difference between 1st and 2nd place.
-2.  **Java Reward**: While Java is harder to type, the **1.2x multiplier** makes it the best choice for high-score hunters if they are fast typists.
+2.  **Java Reward**: While Java is harder to type, the **1.1x multiplier** makes it a strong choice for high-score hunters who are fast typists.
 3.  **Accuracy First**: An incorrect submission stops the timer. Make sure your logic is sound before hitting "Deploy Fix".
